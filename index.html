@@ -4175,9 +4175,11 @@ function goTo(page, btn) {
     });
   }
 
-  // Close mobile menu
+    // Close mobile menu + reset burger icon to hamburger
   var mob = document.getElementById('navMobileMenu');
   if (mob) mob.classList.remove('open');
+  var brg = document.getElementById('navBurger');
+  if (brg) brg.classList.remove('open');
 
   // Scroll to top
   window.scrollTo(0, 0);
