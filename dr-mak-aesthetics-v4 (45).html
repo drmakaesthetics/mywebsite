@@ -2462,7 +2462,121 @@ details.tx-item-card[open] .tx-summary-caret::before {
   margin: 14px 0 20px;
   line-height: 1.6;
 }
+   
+/* ============================================================
+   MOBILE NAV OVERRIDE — desktop (>900px) is untouched
+============================================================ */
 
+/* 1. Prevent horizontal overflow globally */
+html, body { overflow-x: hidden; max-width: 100%; }
+*, *::before, *::after { box-sizing: border-box; }
+#page-content { overflow-x: hidden; }
+
+/* 2. Hide topbar on mobile/tablet */
+@media (max-width: 900px) {
+  .nav-topbar { display: none !important; }
+}
+
+/* 3. Constrain nav bar width */
+.nav-mainbar-inner {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 4. Show burger, hide desktop nav links on mobile/tablet */
+@media (max-width: 900px) {
+  .nav-links          { display: none !important; }
+  .nav-burger         { display: flex !important; }
+  .nav-mainbar-inner  { padding: 0 16px; gap: 8px; }
+}
+
+/* 5. Hide book btn on tiny screens — it lives inside the menu */
+@media (max-width: 480px) {
+  .nav-book-btn { display: none !important; }
+}
+
+/* 6. Burger animates into X when .open is present */
+.nav-burger {
+  min-width: 36px;
+  min-height: 44px;
+  justify-content: center;
+  align-items: center;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* 7. Mobile dropdown menu */
+#topnav { overflow: visible; }
+
+.nav-mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #ffffff;
+  border-top: 2px solid #f0dada;
+  box-shadow: 0 12px 40px rgba(201,151,138,.2);
+  padding: 0 0 8px 0;
+  z-index: 10000;
+  max-height: calc(100svh - 64px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.nav-mobile-menu.open { display: flex; }
+
+/* Menu items — minimum 54px tap target */
+.nav-mobile-menu button {
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(240,218,218,.55);
+  padding: 0 24px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: .03em;
+  color: #3d2828;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  transition: background .18s, color .18s, padding-left .18s;
+  -webkit-tap-highlight-color: rgba(201,151,138,.15);
+}
+.nav-mobile-menu button:hover,
+.nav-mobile-menu button:active {
+  background: #FFF7F8;
+  color: #C9978A;
+  padding-left: 32px;
+}
+
+/* Book Consultation CTA — rose-gold at bottom of menu */
+.nav-mobile-menu .mobile-book {
+  margin-top: 8px;
+  border-bottom: none;
+  border-top: 2px solid #f0dada;
+  background: #C9978A !important;
+  color: #fff !important;
+  font-weight: 600;
+  letter-spacing: .1em;
+  font-size: .88rem;
+  justify-content: center;
+  min-height: 56px;
+  text-transform: uppercase;
+}
+.nav-mobile-menu .mobile-book:hover,
+.nav-mobile-menu .mobile-book:active {
+  background: #B07D72 !important;
+  color: #fff !important;
+  padding-left: 24px;
+}
+   
 </style>
 </head>
 <body>
