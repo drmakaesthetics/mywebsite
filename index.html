@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- MOBILE NAV FIX VERSION 2 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DR MAK Aesthetics — Doctor-Led Luxury Clinic | Glasgow &amp; Edinburgh</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -870,7 +871,16 @@ hr.soft{border:none;border-top:1px solid var(--border);margin:40px 0}
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px 4px;
+  padding: 8px 6px;
+  flex-shrink: 0;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 1px;
+  transition: all .28s;
 }
 .nav-burger span {
   display: block;
@@ -1118,29 +1128,7 @@ hr.soft{border:none;border-top:1px solid var(--border);margin:40px 0}
 }
 .footer-legal a:hover { color: var(--gold-lt); }
 
-/* ============================================================
-   RESPONSIVE ADJUSTMENTS FOR TOP NAV
-============================================================ */
-@media(max-width: 1180px) {
-  .nav-links { gap: 0; }
-  .nav-link { padding: 8px 9px; font-size: .58rem; }
-  .nav-socials { display: none; }
-}
-@media(max-width: 900px) {
-  .nav-links { display: none; }
-  .nav-burger { display: flex; }
-  .nav-brand-text { display: none; }
-  .nav-logo-img { height: 44px; }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; padding: 40px 32px; }
-  .footer-bottom { padding: 16px 32px; }
-}
-@media(max-width: 560px) {
-  .nav-container { padding: 0 18px; }
-  .footer-top { grid-template-columns: 1fr; padding: 32px 22px; }
-  .footer-bottom { padding: 14px 22px; flex-direction: column; align-items: flex-start; }
-  .footer-nl-form { flex-direction: column; }
-  .footer-nl-form input { border-right: 1px solid rgba(201,164,106,.2); border-bottom: none; }
-}
+/* removed-mobile-nav-conflict-0 */
 
 
 /* ── GLOBAL PAGE TOP PADDING FIX for fixed nav ── */
@@ -2370,10 +2358,7 @@ img, video, iframe, table { max-width: 100%; }
   .nav-book-btn { padding: 7px 14px; font-size: .66rem; letter-spacing: .06em; }
   .nav-mainbar-inner { gap: 10px; padding: 0 20px; }
 }
-@media (max-width: 900px) {
-  /* topbar hidden, burger shown — handled by existing rules */
-  .nav-book-btn { display: inline-flex; } /* keep visible until 480px */
-}
+/* removed-mobile-nav-conflict-1 */
 
 /* ── Treatment card accordion (details/summary) ── */
 details.tx-item-card {
@@ -2477,11 +2462,7 @@ details.tx-item-card[open] .tx-summary-caret::before {
 }
 
 
-/* ============================================================
-   MOBILE NAV FIX — below 900px
-============================================================ */
-
-/* Remove overflow:hidden from mainbar — it was clipping the burger */
+/* removed-mobile-nav-conflict-2 */
 @media (max-width: 900px) {
   .nav-mainbar-inner {
     padding: 0 16px;
@@ -2611,6 +2592,133 @@ details.tx-item-card[open] .tx-summary-caret::before {
   }
 }
 
+
+/* ============================================================
+   MOBILE NAV FIX VERSION 2 — FINAL, HIGH SPECIFICITY
+   Injected last so no other rule can override it
+============================================================ */
+
+@media screen and (max-width: 900px) {
+
+  /* Hide desktop-only elements */
+  header#topnav .nav-topbar  { display: none !important; }
+  header#topnav .nav-links   { display: none !important; }
+  header#topnav .nav-book-btn { display: none !important; }
+
+  /* Main bar layout on mobile */
+  header#topnav .nav-mainbar {
+    height: 60px;
+    background: #ffffff;
+  }
+  header#topnav .nav-mainbar-inner {
+    padding: 0 16px !important;
+    gap: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Brand sizing */
+  header#topnav .nav-brand-name { font-size: 1.2rem !important; }
+  header#topnav .nav-brand-tag  { font-size: .46rem !important; letter-spacing: .2em !important; }
+
+  /* Show hamburger — forced visible with full specificity chain */
+  header#topnav .nav-right .nav-burger {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 10px 6px !important;
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
+    z-index: 10001 !important;
+    position: relative !important;
+  }
+  header#topnav .nav-right .nav-burger span {
+    display: block !important;
+    width: 24px !important;
+    height: 2px !important;
+    background: #1a1a1a !important;
+    border-radius: 1px !important;
+  }
+
+  /* Mobile dropdown — hidden until .open */
+  #navMobileMenu {
+    display: none !important;
+    position: fixed !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10000 !important;
+    background: #ffffff !important;
+    border-top: 2px solid #C9978A !important;
+    box-shadow: 0 8px 32px rgba(201,151,138,.22) !important;
+    max-height: calc(100vh - 60px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+  }
+  #navMobileMenu.open {
+    display: flex !important;
+  }
+
+  /* Mobile menu items — large tap targets */
+  #navMobileMenu button {
+    display: block !important;
+    width: 100% !important;
+    background: none !important;
+    border: none !important;
+    border-bottom: 1px solid #f0dada !important;
+    padding: 16px 24px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    color: #6f5f5f !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    min-height: 52px !important;
+    letter-spacing: .02em !important;
+    transition: background .15s, color .15s !important;
+    box-sizing: border-box !important;
+  }
+  #navMobileMenu button:hover,
+  #navMobileMenu button:active {
+    background: #fff7f8 !important;
+    color: #1a1a1a !important;
+  }
+
+  /* Book a Consultation — rose-gold highlight */
+  #navMobileMenu button.mobile-book {
+    background: #C9978A !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: .82rem !important;
+    letter-spacing: .1em !important;
+    border-bottom: none !important;
+    min-height: 56px !important;
+  }
+  #navMobileMenu button.mobile-book:hover,
+  #navMobileMenu button.mobile-book:active {
+    background: #B07D72 !important;
+    color: #ffffff !important;
+  }
+
+  /* Overflow prevention */
+  html, body { overflow-x: hidden !important; max-width: 100% !important; }
+  #page-content { padding-top: 60px !important; overflow-x: hidden !important; }
+  html { scroll-padding-top: 60px !important; }
+  .page { scroll-margin-top: 60px !important; }
+}
+
+@media screen and (max-width: 380px) {
+  header#topnav .nav-mainbar-inner { padding: 0 12px !important; }
+  header#topnav .nav-brand-name    { font-size: 1.05rem !important; }
+  #navMobileMenu button            { font-size: .95rem !important; padding: 15px 18px !important; }
+}
 </style>
 </head>
 <body>
