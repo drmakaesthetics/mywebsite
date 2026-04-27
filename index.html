@@ -4590,9 +4590,55 @@ function toggleFaq(btn) {
 // =====================================================
 // BOOKING SUBMIT
 // =====================================================
-function submitBk() {
-  document.getElementById('bkForm').style.display = 'none';
-  document.getElementById('bkSuccess').classList.add('show');
+async function submitBk() {
+  var first     = (document.getElementById('bk_first')  || {}).value || '';
+  var last      = (document.getElementById('bk_last')   || {}).value || '';
+  var email     = (document.getElementById('bk_email')  || {}).value || '';
+  var phone     = (document.getElementById('bk_phone')  || {}).value || '';
+  var loc       = (document.getElementById('bk_loc')    || {}).value || '';
+  var tx        = (document.getElementById('bk_tx')     || {}).value || '';
+  var msg       = (document.getElementById('bk_msg')    || {}).value || '';
+  var errDiv    = document.getElementById('bkError');
+  var submitBtn = document.getElementById('bkSubmitBtn');
+
+  if (errDiv) errDiv.style.display = 'none';
+
+  if (!first.trim() || !last.trim() || !email.trim()) {
+    if (errDiv) { errDiv.textContent = 'Please fill in your first name, last name and email address.'; errDiv.style.display = 'block'; }
+    return;
+  }
+  if (email.indexOf('@') < 1 || email.lastIndexOf('.') < email.indexOf('@') + 2) {
+    if (errDiv) { errDiv.textContent = 'Please enter a valid email address.'; errDiv.style.display = 'block'; }
+    return;
+  }
+
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+  try {
+    var response = await fetch('https://formspree.io/f/xzdylbwe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        first_name:         first.trim(),
+        last_name:          last.trim(),
+        email:              email.trim(),
+        phone:              phone.trim(),
+        preferred_location: loc,
+        treatment_interest: tx,
+        message:            msg.trim()
+      })
+    });
+    if (response.ok) {
+      document.getElementById('bkForm').style.display = 'none';
+      document.getElementById('bkSuccess').classList.add('show');
+    } else {
+      throw new Error('Status ' + response.status);
+    }
+  } catch(err) {
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Enquiry →'; }
+    if (errDiv) { errDiv.textContent = 'Sorry, something went wrong. Please try again or contact us on WhatsApp.'; errDiv.style.display = 'block'; }
+    console.error('Formspree error:', err);
+  }
 }
 
 // =====================================================
