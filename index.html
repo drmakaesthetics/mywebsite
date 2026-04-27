@@ -4271,20 +4271,21 @@ details.tx-item-card[open] .tx-summary-caret::before {
             </div>
           </div>
           <div class="bk-right">
-            <div id="bkForm">
+            <form id="bkForm" onsubmit="submitBk(event)">
               <h3>Send Your Enquiry</h3>
               <div class="fg-row">
-                <div class="fg"><label>First Name</label><input type="text" placeholder="First name"></div>
-                <div class="fg"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+                <div class="fg"><label for="bk_first">First Name <span style="color:var(--blush)">*</span></label><input id="bk_first" name="first_name" type="text" placeholder="First name" required></div>
+                <div class="fg"><label for="bk_last">Last Name <span style="color:var(--blush)">*</span></label><input id="bk_last" name="last_name" type="text" placeholder="Last name" required></div>
               </div>
-              <div class="fg"><label>Email Address</label><input type="email" placeholder="info@drmakaesthetics.co.uk"></div>
-              <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+44 7348138738"></div>
-              <div class="fg"><label>Preferred Location</label><select><option>Glasgow Clinic</option><option>Edinburgh Clinic</option><option>No Preference</option></select></div>
-              <div class="fg"><label>Treatment of Interest</label><select><option>Not Sure — Consultation Please</option><option>Anti-Wrinkle Injections</option><option>Lip Filler</option><option>Cheek Filler</option><option>Jawline / Chin Filler</option><option>Skin Booster / Profhilo</option><option>Polynucleotides</option><option>Chemical Peel</option><option>Microneedling</option><option>Fat Dissolving</option><option>Skin / Acne Consultation</option><option>Package Enquiry</option><option>Glow Membership</option></select></div>
-              <div class="fg"><label>Anything you'd like to tell us?</label><textarea placeholder="Any concerns, previous treatments, or questions…"></textarea></div>
-              <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="submitBk()">Send Enquiry →</button>
+              <div class="fg"><label for="bk_email">Email Address <span style="color:var(--blush)">*</span></label><input id="bk_email" name="email" type="email" placeholder="your@email.com" required></div>
+              <div class="fg"><label for="bk_phone">Phone Number</label><input id="bk_phone" name="phone" type="tel" placeholder="+44 7000 000000"></div>
+              <div class="fg"><label for="bk_loc">Preferred Location</label><select id="bk_loc" name="preferred_location"><option>Glasgow Clinic</option><option>Edinburgh Clinic</option><option>No Preference</option></select></div>
+              <div class="fg"><label for="bk_tx">Treatment of Interest</label><select id="bk_tx" name="treatment_interest"><option>Not Sure — Consultation Please</option><option>Anti-Wrinkle Injections</option><option>Lip Filler</option><option>Cheek Filler</option><option>Jawline / Chin Filler</option><option>Skin Booster / Profhilo</option><option>Polynucleotides</option><option>Chemical Peel</option><option>Microneedling</option><option>Fat Dissolving</option><option>Skin / Acne Consultation</option><option>Package Enquiry</option><option>Glow Membership</option></select></div>
+              <div class="fg"><label for="bk_msg">Anything you’d like to tell us?</label><textarea id="bk_msg" name="message" placeholder="Any concerns, previous treatments, or questions…"></textarea></div>
+              <div id="bkError" style="display:none;margin-bottom:14px;padding:12px 16px;background:#fff0f0;border-left:3px solid #e07070;font-size:.8rem;color:#8b2222;line-height:1.5"></div>
+              <button type="submit" class="btn btn-gold" id="bkSubmitBtn" style="width:100%;justify-content:center">Send Enquiry →</button>
               <p style="font-size:.7rem;margin-top:12px;color:var(--txt-light);text-align:center">We aim to respond within 24 hours. All enquiries are completely confidential.</p>
-            </div>
+            </form>
             <div class="form-success" id="bkSuccess">
               <div class="si">✉️</div>
               <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--dark);margin-bottom:12px">Enquiry Received</h3>
@@ -4590,54 +4591,51 @@ function toggleFaq(btn) {
 // =====================================================
 // BOOKING SUBMIT
 // =====================================================
-async function submitBk() {
-  var first     = (document.getElementById('bk_first')  || {}).value || '';
-  var last      = (document.getElementById('bk_last')   || {}).value || '';
-  var email     = (document.getElementById('bk_email')  || {}).value || '';
-  var phone     = (document.getElementById('bk_phone')  || {}).value || '';
-  var loc       = (document.getElementById('bk_loc')    || {}).value || '';
-  var tx        = (document.getElementById('bk_tx')     || {}).value || '';
-  var msg       = (document.getElementById('bk_msg')    || {}).value || '';
+async function submitBk(event) {
+  event.preventDefault();
+  console.log("Submitting booking form");
+
+  var form      = document.getElementById('bkForm');
   var errDiv    = document.getElementById('bkError');
   var submitBtn = document.getElementById('bkSubmitBtn');
 
-  if (errDiv) errDiv.style.display = 'none';
+  if (errDiv) { errDiv.style.display = 'none'; errDiv.textContent = ''; }
 
+  // Basic validation
+  var first = (document.getElementById('bk_first') || {}).value || '';
+  var last  = (document.getElementById('bk_last')  || {}).value || '';
+  var email = (document.getElementById('bk_email') || {}).value || '';
   if (!first.trim() || !last.trim() || !email.trim()) {
     if (errDiv) { errDiv.textContent = 'Please fill in your first name, last name and email address.'; errDiv.style.display = 'block'; }
-    return;
-  }
-  if (email.indexOf('@') < 1 || email.lastIndexOf('.') < email.indexOf('@') + 2) {
-    if (errDiv) { errDiv.textContent = 'Please enter a valid email address.'; errDiv.style.display = 'block'; }
     return;
   }
 
   if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
 
   try {
+    var formData = new FormData(form);
     var response = await fetch('https://formspree.io/f/xzdylbwe', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        first_name:         first.trim(),
-        last_name:          last.trim(),
-        email:              email.trim(),
-        phone:              phone.trim(),
-        preferred_location: loc,
-        treatment_interest: tx,
-        message:            msg.trim()
-      })
+      body: formData,
+      headers: { 'Accept': 'application/json' }
     });
+    console.log("Formspree response status:", response.status);
     if (response.ok) {
-      document.getElementById('bkForm').style.display = 'none';
-      document.getElementById('bkSuccess').classList.add('show');
+      form.style.display = 'none';
+      var ok = document.getElementById('bkSuccess');
+      if (ok) ok.classList.add('show');
     } else {
-      throw new Error('Status ' + response.status);
+      var data = {};
+      try { data = await response.json(); } catch(e) {}
+      throw new Error(data.error || ('Status ' + response.status));
     }
   } catch(err) {
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Enquiry →'; }
-    if (errDiv) { errDiv.textContent = 'Sorry, something went wrong. Please try again or contact us on WhatsApp.'; errDiv.style.display = 'block'; }
     console.error('Formspree error:', err);
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Enquiry →'; }
+    if (errDiv) {
+      errDiv.textContent = 'Sorry, something went wrong. Please try again or contact us on WhatsApp.';
+      errDiv.style.display = 'block';
+    }
   }
 }
 
