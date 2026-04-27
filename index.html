@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!-- MOBILE NAV FIX VERSION 2 -->
+<!-- MOBILE MENU WORKING FINAL -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DR MAK Aesthetics — Doctor-Led Luxury Clinic | Glasgow &amp; Edinburgh</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -2342,6 +2342,7 @@ html {
 p, li, td, th, label, input, textarea, select {
   font-size: max(0.82rem, 14px);
 }
+/* nav elements explicitly NOT touched by override */
 /* Buttons explicitly controlled — no override */
 .nav-link      { font-size: .66rem; }
 .nav-book-btn  { font-size: .72rem; }
@@ -2593,19 +2594,42 @@ details.tx-item-card[open] .tx-summary-caret::before {
 }
 
 
+
 /* ============================================================
-   MOBILE NAV FIX VERSION 2 — FINAL, HIGH SPECIFICITY
-   Injected last so no other rule can override it
+   MOBILE MENU WORKING FINAL
 ============================================================ */
-
-@media screen and (max-width: 900px) {
-
-  /* Hide desktop-only elements */
-  header#topnav .nav-topbar  { display: none !important; }
-  header#topnav .nav-links   { display: none !important; }
-  header#topnav .nav-book-btn { display: none !important; }
-
-  /* Main bar layout on mobile */
+@media (max-width: 900px) {
+  header#topnav .nav-links {
+    display: none !important;
+  }
+  header#topnav .nav-book-btn {
+    display: none !important;
+  }
+  header#topnav .nav-burger {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 10050 !important;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 6px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  header#topnav .nav-burger span {
+    display: block !important;
+    width: 24px;
+    height: 2px;
+    background: #1a1a1a;
+    border-radius: 1px;
+  }
+  header#topnav .nav-topbar {
+    display: none !important;
+  }
   header#topnav .nav-mainbar {
     height: 60px;
     background: #ffffff;
@@ -2615,109 +2639,61 @@ details.tx-item-card[open] .tx-summary-caret::before {
     gap: 0 !important;
     overflow: visible !important;
   }
-
-  /* Brand sizing */
-  header#topnav .nav-brand-name { font-size: 1.2rem !important; }
-  header#topnav .nav-brand-tag  { font-size: .46rem !important; letter-spacing: .2em !important; }
-
-  /* Show hamburger — forced visible with full specificity chain */
-  header#topnav .nav-right .nav-burger {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    flex-direction: column !important;
-    gap: 5px !important;
-    background: none !important;
-    border: none !important;
-    cursor: pointer !important;
-    padding: 10px 6px !important;
-    margin-left: auto !important;
-    flex-shrink: 0 !important;
-    z-index: 10001 !important;
-    position: relative !important;
-  }
-  header#topnav .nav-right .nav-burger span {
-    display: block !important;
-    width: 24px !important;
-    height: 2px !important;
-    background: #1a1a1a !important;
-    border-radius: 1px !important;
-  }
-
-  /* Mobile dropdown — hidden until .open */
-  #navMobileMenu {
+  header#topnav #navMobileMenu {
     display: none !important;
     position: fixed !important;
-    top: 60px !important;
+    top: 64px !important;
     left: 0 !important;
     right: 0 !important;
-    z-index: 10000 !important;
-    background: #ffffff !important;
-    border-top: 2px solid #C9978A !important;
-    box-shadow: 0 8px 32px rgba(201,151,138,.22) !important;
-    max-height: calc(100vh - 60px) !important;
+    width: 100vw !important;
+    max-height: calc(100vh - 64px) !important;
     overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    padding: 0 !important;
+    background: #ffffff !important;
+    z-index: 10040 !important;
+    padding: 10px 22px 24px !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,.12) !important;
+    flex-direction: column !important;
+    border-top: 2px solid #C9978A !important;
+  }
+  header#topnav #navMobileMenu.open {
+    display: flex !important;
     flex-direction: column !important;
   }
-  #navMobileMenu.open {
-    display: flex !important;
-  }
-
-  /* Mobile menu items — large tap targets */
-  #navMobileMenu button {
+  header#topnav #navMobileMenu button {
     display: block !important;
     width: 100% !important;
-    background: none !important;
-    border: none !important;
-    border-bottom: 1px solid #f0dada !important;
-    padding: 16px 24px !important;
-    font-family: 'Outfit', sans-serif !important;
-    font-size: 1rem !important;
-    font-weight: 400 !important;
-    color: #6f5f5f !important;
-    cursor: pointer !important;
-    text-align: left !important;
     min-height: 52px !important;
-    letter-spacing: .02em !important;
-    transition: background .15s, color .15s !important;
-    box-sizing: border-box !important;
+    text-align: left !important;
+    font-size: 1rem !important;
+    padding: 15px 8px !important;
+    border-bottom: 1px solid rgba(201,151,138,.18) !important;
+    color: #1A1A1A !important;
+    background: #ffffff !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    font-family: 'Outfit', sans-serif !important;
+    cursor: pointer !important;
+    letter-spacing: .03em !important;
   }
-  #navMobileMenu button:hover,
-  #navMobileMenu button:active {
-    background: #fff7f8 !important;
-    color: #1a1a1a !important;
-  }
-
-  /* Book a Consultation — rose-gold highlight */
-  #navMobileMenu button.mobile-book {
+  header#topnav #navMobileMenu .mobile-book {
     background: #C9978A !important;
     color: #ffffff !important;
+    text-align: center !important;
+    margin-top: 12px !important;
+    border: none !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
-    font-size: .82rem !important;
     letter-spacing: .1em !important;
-    border-bottom: none !important;
+    font-size: .85rem !important;
     min-height: 56px !important;
   }
-  #navMobileMenu button.mobile-book:hover,
-  #navMobileMenu button.mobile-book:active {
-    background: #B07D72 !important;
-    color: #ffffff !important;
-  }
-
-  /* Overflow prevention */
-  html, body { overflow-x: hidden !important; max-width: 100% !important; }
-  #page-content { padding-top: 60px !important; overflow-x: hidden !important; }
-  html { scroll-padding-top: 60px !important; }
-  .page { scroll-margin-top: 60px !important; }
+  html, body { overflow-x: hidden !important; }
+  #page-content { padding-top: 60px !important; }
 }
-
-@media screen and (max-width: 380px) {
-  header#topnav .nav-mainbar-inner { padding: 0 12px !important; }
-  header#topnav .nav-brand-name    { font-size: 1.05rem !important; }
-  #navMobileMenu button            { font-size: .95rem !important; padding: 15px 18px !important; }
+@media (max-width: 380px) {
+  header#topnav .nav-brand-name { font-size: 1.05rem !important; }
+  header#topnav #navMobileMenu button { font-size: .95rem !important; padding: 13px 8px !important; }
 }
 </style>
 </head>
@@ -4326,8 +4302,12 @@ function goTo(page, btn) {
 }
 
 function toggleMobileNav() {
-  var menu = document.getElementById('navMobileMenu');
-  if (menu) menu.classList.toggle('open');
+  console.log('mobile menu clicked');
+  const menu = document.getElementById('navMobileMenu');
+  if (menu) {
+    menu.classList.toggle('open');
+    console.log('navMobileMenu classes:', menu.className);
+  }
 }
 
 // =====================================================
