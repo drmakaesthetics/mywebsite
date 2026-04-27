@@ -2695,6 +2695,149 @@ details.tx-item-card[open] .tx-summary-caret::before {
   header#topnav .nav-brand-name { font-size: 1.05rem !important; }
   header#topnav #navMobileMenu button { font-size: .95rem !important; padding: 13px 8px !important; }
 }
+
+/* ============================================================
+   MOBILE HEADER — SEPARATE, BELOW 900px ONLY
+   MOBILE MENU WORKING FINAL
+============================================================ */
+
+/* Hide by default (desktop) */
+#mobileHeader { display: none; }
+#mobileDrawer { display: none; }
+
+@media (max-width: 900px) {
+
+  /* Hide the desktop header entirely */
+  #topnav { display: none !important; }
+
+  /* Show mobile header */
+  #mobileHeader {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #ffffff;
+    border-bottom: 1px solid #f0dada;
+    box-shadow: 0 2px 12px rgba(201,151,138,.12);
+    z-index: 99999;
+    padding: 0 18px;
+    box-sizing: border-box;
+  }
+
+  /* Brand text */
+  .mobile-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    letter-spacing: .06em;
+    cursor: pointer;
+    user-select: none;
+  }
+  .mobile-brand span {
+    font-family: 'Outfit', sans-serif;
+    font-size: .55rem;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: #C9978A;
+    margin-left: 4px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  /* Hamburger button */
+  #mobileMenuBtn {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    cursor: pointer;
+    padding: 8px 4px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Drawer — hidden until .open */
+  #mobileDrawer {
+    display: none !important;
+    position: fixed !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    max-height: calc(100vh - 60px) !important;
+    overflow-y: auto !important;
+    background: #ffffff !important;
+    z-index: 99998 !important;
+    flex-direction: column !important;
+    border-top: 2px solid #C9978A !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,.14) !important;
+    padding: 8px 0 20px !important;
+    box-sizing: border-box !important;
+  }
+  #mobileDrawer.open {
+    display: flex !important;
+  }
+
+  /* Drawer buttons */
+  #mobileDrawer button {
+    display: block !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(201,151,138,.15) !important;
+    padding: 16px 24px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    color: #1a1a1a !important;
+    text-align: left !important;
+    cursor: pointer !important;
+    min-height: 52px !important;
+    letter-spacing: .02em !important;
+    box-sizing: border-box !important;
+    -webkit-tap-highlight-color: rgba(201,151,138,.15);
+  }
+  #mobileDrawer button:active {
+    background: #fff7f8 !important;
+  }
+
+  /* Book Consultation — highlighted */
+  #mobileDrawer .drawer-book {
+    background: #C9978A !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: .1em !important;
+    font-size: .85rem !important;
+    border: none !important;
+    margin: 12px 18px 4px !important;
+    width: calc(100% - 36px) !important;
+    border-radius: 0 !important;
+    min-height: 52px !important;
+    text-align: center !important;
+  }
+  #mobileDrawer .drawer-book:active {
+    background: #B07D72 !important;
+  }
+
+  /* Page content: clear mobile header height */
+  #page-content {
+    padding-top: 60px !important;
+  }
+  html { scroll-padding-top: 60px !important; }
+  .page { scroll-margin-top: 60px !important; }
+  html, body { overflow-x: hidden !important; }
+}
+
 </style>
 </head>
 <body>
@@ -2748,6 +2891,24 @@ details.tx-item-card[open] .tx-summary-caret::before {
     <button onclick="goTo('booking',null)" class="mobile-book">Book a Consultation</button>
   </div>
 </header>
+<!-- MOBILE MENU WORKING FINAL -->
+<header id="mobileHeader">
+  <div class="mobile-brand" onclick="goTo('home',null)">DR MAK <span>Aesthetics</span></div>
+  <button id="mobileMenuBtn" onclick="toggleMobileDrawer()" aria-label="Open menu">&#9776;</button>
+</header>
+
+<div id="mobileDrawer">
+  <button onclick="goTo('home',null);toggleMobileDrawer()">Home</button>
+  <button onclick="goTo('concerns',null);toggleMobileDrawer()">Skin Concerns</button>
+  <button onclick="goTo('treatments',null);toggleMobileDrawer()">Aesthetic Treatments</button>
+  <button onclick="goTo('medical',null);toggleMobileDrawer()">Medical Treatments</button>
+  <button onclick="goTo('plans',null);toggleMobileDrawer()">Plans, Offers &amp; Membership</button>
+  <button onclick="goTo('quiz',null);toggleMobileDrawer()">Find My Treatment</button>
+  <button onclick="goTo('results',null);toggleMobileDrawer()">Before &amp; After</button>
+  <button onclick="goTo('about',null);toggleMobileDrawer()">About Dr MAK</button>
+  <button class="drawer-book" onclick="goTo('booking',null);toggleMobileDrawer()">Book Consultation</button>
+</div>
+
 
 <div id="page-content">
 
@@ -4763,6 +4924,16 @@ function nlBarSub(e) {
   var btn = e.target.querySelector('button[type="submit"]');
   if (btn) btn.disabled = true;
 }
+
+function toggleMobileDrawer() {
+  console.log('drawer toggled');
+  const drawer = document.getElementById('mobileDrawer');
+  if (drawer) {
+    drawer.classList.toggle('open');
+    console.log('mobileDrawer open:', drawer.classList.contains('open'));
+  }
+}
+
 </script>
 
 </body>
