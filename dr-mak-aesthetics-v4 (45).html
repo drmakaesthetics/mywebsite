@@ -2462,121 +2462,155 @@ details.tx-item-card[open] .tx-summary-caret::before {
   margin: 14px 0 20px;
   line-height: 1.6;
 }
-   
+
+
+/* ── Placeholder images: SVG data-URI rendered correctly ── */
+.cc-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.mp-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 /* ============================================================
-   MOBILE NAV OVERRIDE — desktop (>900px) is untouched
+   MOBILE NAV FIX — below 900px
 ============================================================ */
 
-/* 1. Prevent horizontal overflow globally */
-html, body { overflow-x: hidden; max-width: 100%; }
-*, *::before, *::after { box-sizing: border-box; }
-#page-content { overflow-x: hidden; }
-
-/* 2. Hide topbar on mobile/tablet */
+/* Remove overflow:hidden from mainbar — it was clipping the burger */
 @media (max-width: 900px) {
-  .nav-topbar { display: none !important; }
-}
+  .nav-mainbar-inner {
+    padding: 0 16px;
+    gap: 0;
+    overflow: visible;
+  }
 
-/* 3. Constrain nav bar width */
-.nav-mainbar-inner {
-  box-sizing: border-box;
-  width: 100%;
-  overflow: hidden;
-}
+  /* Brand: slightly smaller so it fits */
+  .nav-brand-name { font-size: 1.2rem; }
+  .nav-brand-tag  { font-size: .48rem; letter-spacing: .22em; }
 
-/* 4. Show burger, hide desktop nav links on mobile/tablet */
-@media (max-width: 900px) {
-  .nav-links          { display: none !important; }
-  .nav-burger         { display: flex !important; }
-  .nav-mainbar-inner  { padding: 0 16px; gap: 8px; }
-}
-
-/* 5. Hide book btn on tiny screens — it lives inside the menu */
-@media (max-width: 480px) {
+  /* Hide desktop nav and book button */
+  .nav-links    { display: none !important; }
   .nav-book-btn { display: none !important; }
+
+  /* Show burger — ensure it is always visible */
+  .nav-burger {
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 6px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .nav-burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 1px;
+    transition: all .28s;
+  }
+
+  /* Topbar hidden on mobile */
+  .nav-topbar { display: none !important; }
+
+  /* page-content: reduce top padding since topbar gone */
+  #page-content { padding-top: 64px; }
+
+  /* Scroll padding matches */
+  html { scroll-padding-top: 64px; }
+  .page { scroll-margin-top: 64px; }
 }
 
-/* 6. Burger animates into X when .open is present */
-.nav-burger {
-  min-width: 36px;
-  min-height: 44px;
-  justify-content: center;
-  align-items: center;
-}
-.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+/* Mobile dropdown menu */
+@media (max-width: 900px) {
+  .nav-mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #ffffff;
+    border-top: 2px solid var(--blush);
+    padding: 0;
+    box-shadow: 0 8px 32px rgba(201,151,138,.18);
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-mobile-menu.open {
+    display: flex !important;
+  }
 
-/* 7. Mobile dropdown menu */
-#topnav { overflow: visible; }
+  /* Large tap targets */
+  .nav-mobile-menu button {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border-lt);
+    padding: 16px 24px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .04em;
+    color: var(--txt-mid);
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    min-height: 52px;
+    transition: background .18s, color .18s, padding-left .18s;
+  }
+  .nav-mobile-menu button:hover,
+  .nav-mobile-menu button:active {
+    background: var(--off);
+    color: var(--dark);
+    padding-left: 32px;
+  }
 
-.nav-mobile-menu {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background: #ffffff;
-  border-top: 2px solid #f0dada;
-  box-shadow: 0 12px 40px rgba(201,151,138,.2);
-  padding: 0 0 8px 0;
-  z-index: 10000;
-  max-height: calc(100svh - 64px);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.nav-mobile-menu.open { display: flex; }
-
-/* Menu items — minimum 54px tap target */
-.nav-mobile-menu button {
-  background: none;
-  border: none;
-  border-bottom: 1px solid rgba(240,218,218,.55);
-  padding: 0 24px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: .03em;
-  color: #3d2828;
-  cursor: pointer;
-  text-align: left;
-  width: 100%;
-  min-height: 54px;
-  display: flex;
-  align-items: center;
-  transition: background .18s, color .18s, padding-left .18s;
-  -webkit-tap-highlight-color: rgba(201,151,138,.15);
-}
-.nav-mobile-menu button:hover,
-.nav-mobile-menu button:active {
-  background: #FFF7F8;
-  color: #C9978A;
-  padding-left: 32px;
+  /* Book Consultation — highlighted at bottom */
+  .nav-mobile-menu .mobile-book {
+    margin-top: 0;
+    background: var(--blush) !important;
+    color: #fff !important;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-size: .8rem;
+    border-top: none;
+    border-bottom: none;
+    padding: 18px 24px;
+    min-height: 56px;
+  }
+  .nav-mobile-menu .mobile-book:hover,
+  .nav-mobile-menu .mobile-book:active {
+    background: var(--blush-deep) !important;
+    padding-left: 24px;
+    color: #fff !important;
+  }
 }
 
-/* Book Consultation CTA — rose-gold at bottom of menu */
-.nav-mobile-menu .mobile-book {
-  margin-top: 8px;
-  border-bottom: none;
-  border-top: 2px solid #f0dada;
-  background: #C9978A !important;
-  color: #fff !important;
-  font-weight: 600;
-  letter-spacing: .1em;
-  font-size: .88rem;
-  justify-content: center;
-  min-height: 56px;
-  text-transform: uppercase;
+/* Extra small phones */
+@media (max-width: 380px) {
+  .nav-mainbar-inner { padding: 0 12px; }
+  .nav-brand-name { font-size: 1.1rem; }
+  .nav-mobile-menu button { font-size: .95rem; padding: 15px 20px; }
 }
-.nav-mobile-menu .mobile-book:hover,
-.nav-mobile-menu .mobile-book:active {
-  background: #B07D72 !important;
-  color: #fff !important;
-  padding-left: 24px;
+
+/* Prevent horizontal overflow globally on mobile */
+@media (max-width: 900px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+  #page-content {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
 }
-   
+
 </style>
 </head>
 <body>
@@ -3000,22 +3034,22 @@ html, body { overflow-x: hidden; max-width: 100%; }
               <button class="ctab" data-cat="contour">Contouring</button>
             </div>
             <div class="concerns-grid" id="ccGrid">
-              <div class="cc" data-cat="ageing"><div class="cc-emoji">〰️</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=75')"></div><h4>Fine Lines & Wrinkles</h4><p>Expression lines, forehead lines and crow's feet caused by repeated muscle movement and collagen reduction.</p><span class="cc-tag">Anti-Wrinkle Available</span></div>
-              <div class="cc" data-cat="ageing"><div class="cc-emoji">🫧</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1609207825181-9b58b3bad30b?w=500&q=75')"></div><h4>Skin Laxity & Sagging</h4><p>Loss of skin firmness as collagen and elastin decline with age. Often first visible in the jawline and cheeks.</p><span class="cc-tag">Skin Tightening</span></div>
-              <div class="cc" data-cat="ageing"><div class="cc-emoji">🌿</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=75')"></div><h4>Volume Loss</h4><p>Age-related hollowing in cheeks, under-eyes and lips as fat redistributes and bone resorbs over time.</p><span class="cc-tag">Fillers & Boosters</span></div>
-              <div class="cc" data-cat="ageing"><div class="cc-emoji">👁️</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=75')"></div><h4>Under-Eye Hollows</h4><p>Tear trough hollowing, dark circles and puffiness — treated with careful assessment of the correct approach.</p><span class="cc-tag">Tear Trough Treatment</span></div>
-              <div class="cc" data-cat="acne"><div class="cc-emoji">⚡</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1595346595228-11aa5f0a7cdb?w=500&q=75')"></div><h4>Active Acne</h4><p>Comedonal, inflammatory, cystic and hormonal acne. We assess triggers and skin type for targeted medical plans.</p><span class="cc-tag">Medical Treatment</span></div>
-              <div class="cc" data-cat="acne"><div class="cc-emoji">🕳️</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1614859324967-bdf413c35a5a?w=500&q=75')"></div><h4>Acne Scarring</h4><p>Ice-pick, boxcar, rolling scars and post-inflammatory marks requiring staged, specialist treatment protocols.</p><span class="cc-tag">Microneedling & Peels</span></div>
-              <div class="cc" data-cat="acne"><div class="cc-emoji">⚫</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&q=75')"></div><h4>Blackheads & Congestion</h4><p>Open comedones, blocked pores and sebaceous filaments — often worsened by barrier damage.</p><span class="cc-tag">Resurfacing</span></div>
-              <div class="cc" data-cat="pigment"><div class="cc-emoji">🌑</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1614859324967-bdf413c35a5a?w=500&q=75')"></div><h4>Hyperpigmentation</h4><p>Uneven skin tone, age spots and post-inflammatory marks. Understanding pigmentation type is key to treatment.</p><span class="cc-tag">Pigmentation Treatment</span></div>
-              <div class="cc" data-cat="pigment"><div class="cc-emoji">🌓</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=500&q=75')"></div><h4>Melasma</h4><p>A complex hormonal pigmentation condition triggered by sun exposure and hormonal changes. Requires specialist care.</p><span class="cc-tag">Specialist Consultation</span></div>
-              <div class="cc" data-cat="pigment"><div class="cc-emoji">🌸</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1611243227561-c8b98d3a0d04?w=500&q=75')"></div><h4>Rosacea & Redness</h4><p>Persistent facial redness, flushing and visible capillaries. A medical skin condition needing prescription management.</p><span class="cc-tag">Medical Skincare Plan</span></div>
-              <div class="cc" data-cat="skin"><div class="cc-emoji">💧</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=75')"></div><h4>Dehydration & Dullness</h4><p>Skin that lacks radiance or feels tight despite moisturising — often caused by impaired barrier.</p><span class="cc-tag">Skin Booster Available</span></div>
-              <div class="cc" data-cat="skin"><div class="cc-emoji">🔬</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1614859324967-bdf413c35a5a?w=500&q=75')"></div><h4>Enlarged Pores</h4><p>Prominent pores on nose and cheeks caused by oily skin, sun damage and loss of elasticity.</p><span class="cc-tag">Resurfacing Available</span></div>
-              <div class="cc" data-cat="skin"><div class="cc-emoji">🏜️</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=75')"></div><h4>Rough Texture</h4><p>Uneven skin surface, bumpy texture and thickened skin — significantly improved with resurfacing.</p><span class="cc-tag">Peel & Needling</span></div>
-              <div class="cc" data-cat="contour"><div class="cc-emoji">💋</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1596704017254-9b5e2a025acf?w=500&q=75')"></div><h4>Lip Enhancement</h4><p>Thin lips, asymmetry, loss of definition or lack of cupid's bow addressed with precision filler techniques.</p><span class="cc-tag">Lip Filler Available</span></div>
-              <div class="cc" data-cat="contour"><div class="cc-emoji">🦷</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=75')"></div><h4>Jawline & Chin</h4><p>Undefined jawline, weak chin, jowling or double chin addressed through filler contouring.</p><span class="cc-tag">Contouring Available</span></div>
-              <div class="cc" data-cat="contour"><div class="cc-emoji">🌅</div><div class="cc-img" style="background-image:url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=75')"></div><h4>Cheek Definition</h4><p>Flat cheeks and loss of midface volume restored to create natural facial balance and a lifted appearance.</p><span class="cc-tag">Cheek Filler Available</span></div>
+              <div class="cc" data-cat="ageing"><div class="cc-emoji">〰️</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EFine%20Lines%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22178%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3E%26%20Wrinkles%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Fine Lines & Wrinkles</h4><p>Expression lines, forehead lines and crow's feet caused by repeated muscle movement and collagen reduction.</p><span class="cc-tag">Anti-Wrinkle Available</span></div>
+              <div class="cc" data-cat="ageing"><div class="cc-emoji">🫧</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3ESkin%20Laxity%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22178%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3E%26%20Sagging%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Skin Laxity & Sagging</h4><p>Loss of skin firmness as collagen and elastin decline with age. Often first visible in the jawline and cheeks.</p><span class="cc-tag">Skin Tightening</span></div>
+              <div class="cc" data-cat="ageing"><div class="cc-emoji">🌿</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EVolume%20Loss%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Volume Loss</h4><p>Age-related hollowing in cheeks, under-eyes and lips as fat redistributes and bone resorbs over time.</p><span class="cc-tag">Fillers & Boosters</span></div>
+              <div class="cc" data-cat="ageing"><div class="cc-emoji">👁️</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EUnder-Eye%20Hollows%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Under-Eye Hollows</h4><p>Tear trough hollowing, dark circles and puffiness — treated with careful assessment of the correct approach.</p><span class="cc-tag">Tear Trough Treatment</span></div>
+              <div class="cc" data-cat="acne"><div class="cc-emoji">⚡</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EActive%20Acne%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Active Acne</h4><p>Comedonal, inflammatory, cystic and hormonal acne. We assess triggers and skin type for targeted medical plans.</p><span class="cc-tag">Medical Treatment</span></div>
+              <div class="cc" data-cat="acne"><div class="cc-emoji">🕳️</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EAcne%20Scarring%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Acne Scarring</h4><p>Ice-pick, boxcar, rolling scars and post-inflammatory marks requiring staged, specialist treatment protocols.</p><span class="cc-tag">Microneedling & Peels</span></div>
+              <div class="cc" data-cat="acne"><div class="cc-emoji">⚫</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EBlackheads%20%26%20Congestion%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Blackheads & Congestion</h4><p>Open comedones, blocked pores and sebaceous filaments — often worsened by barrier damage.</p><span class="cc-tag">Resurfacing</span></div>
+              <div class="cc" data-cat="pigment"><div class="cc-emoji">🌑</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EHyperpigmentation%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Hyperpigmentation</h4><p>Uneven skin tone, age spots and post-inflammatory marks. Understanding pigmentation type is key to treatment.</p><span class="cc-tag">Pigmentation Treatment</span></div>
+              <div class="cc" data-cat="pigment"><div class="cc-emoji">🌓</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EMelasma%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Melasma</h4><p>A complex hormonal pigmentation condition triggered by sun exposure and hormonal changes. Requires specialist care.</p><span class="cc-tag">Specialist Consultation</span></div>
+              <div class="cc" data-cat="pigment"><div class="cc-emoji">🌸</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3ERosacea%20%26%20Redness%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Rosacea & Redness</h4><p>Persistent facial redness, flushing and visible capillaries. A medical skin condition needing prescription management.</p><span class="cc-tag">Medical Skincare Plan</span></div>
+              <div class="cc" data-cat="skin"><div class="cc-emoji">💧</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EDehydration%20%26%20Dullness%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Dehydration & Dullness</h4><p>Skin that lacks radiance or feels tight despite moisturising — often caused by impaired barrier.</p><span class="cc-tag">Skin Booster Available</span></div>
+              <div class="cc" data-cat="skin"><div class="cc-emoji">🔬</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EEnlarged%20Pores%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Enlarged Pores</h4><p>Prominent pores on nose and cheeks caused by oily skin, sun damage and loss of elasticity.</p><span class="cc-tag">Resurfacing Available</span></div>
+              <div class="cc" data-cat="skin"><div class="cc-emoji">🏜️</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3ERough%20Texture%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Rough Texture</h4><p>Uneven skin surface, bumpy texture and thickened skin — significantly improved with resurfacing.</p><span class="cc-tag">Peel & Needling</span></div>
+              <div class="cc" data-cat="contour"><div class="cc-emoji">💋</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3ELip%20Enhancement%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Lip Enhancement</h4><p>Thin lips, asymmetry, loss of definition or lack of cupid's bow addressed with precision filler techniques.</p><span class="cc-tag">Lip Filler Available</span></div>
+              <div class="cc" data-cat="contour"><div class="cc-emoji">🦷</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EJawline%20%26%20Chin%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Jawline & Chin</h4><p>Undefined jawline, weak chin, jowling or double chin addressed through filler contouring.</p><span class="cc-tag">Contouring Available</span></div>
+              <div class="cc" data-cat="contour"><div class="cc-emoji">🌅</div><div class="cc-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22500%22%20height%3D%22340%22%20viewBox%3D%220%200%20500%20340%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22500%22%20height%3D%22340%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22500%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22226%22%20y1%3D%22118%22%20x2%3D%22274%22%20y2%3D%22118%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22156%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3ECheek%20Definition%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22250%22%20y%3D%22208%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div><h4>Cheek Definition</h4><p>Flat cheeks and loss of midface volume restored to create natural facial balance and a lifted appearance.</p><span class="cc-tag">Cheek Filler Available</span></div>
             </div>
           </div>
           <div class="skin-right">
@@ -3459,19 +3493,19 @@ html, body { overflow-x: hidden; max-width: 100%; }
 
               <div class="mp-condition-grid">
                 <div class="mp-condition-card">
-                  <div class="mp-img" style="background-image:url('https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=400&q=80')"></div>
+                  <div class="mp-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22280%22%20viewBox%3D%220%200%20400%20280%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22400%22%20height%3D%22280%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22400%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22176%22%20y1%3D%2288%22%20x2%3D%22224%22%20y2%3D%2288%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22200%22%20y%3D%22126%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3ESkin%20Tags%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22200%22%20y%3D%22178%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div>
                   <span class="mp-condition-label">Skin Tags</span>
                 </div>
                 <div class="mp-condition-card">
-                  <div class="mp-img" style="background-image:url('https://images.unsplash.com/photo-1614859324967-bdf413c35a5a?w=400&q=80')"></div>
+                  <div class="mp-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22280%22%20viewBox%3D%220%200%20400%20280%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22400%22%20height%3D%22280%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22400%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22176%22%20y1%3D%2288%22%20x2%3D%22224%22%20y2%3D%2288%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22200%22%20y%3D%22126%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EBenign%20Moles%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22200%22%20y%3D%22178%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div>
                   <span class="mp-condition-label">Benign Moles</span>
                 </div>
                 <div class="mp-condition-card">
-                  <div class="mp-img" style="background-image:url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&q=80')"></div>
+                  <div class="mp-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22280%22%20viewBox%3D%220%200%20400%20280%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22400%22%20height%3D%22280%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22400%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22176%22%20y1%3D%2288%22%20x2%3D%22224%22%20y2%3D%2288%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22200%22%20y%3D%22126%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3ESeborrhoeic%20Keratoses%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22200%22%20y%3D%22178%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div>
                   <span class="mp-condition-label">Seborrhoeic Keratoses</span>
                 </div>
                 <div class="mp-condition-card">
-                  <div class="mp-img" style="background-image:url('https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=400&q=80')"></div>
+                  <div class="mp-img" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22280%22%20viewBox%3D%220%200%20400%20280%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E8E6%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%22400%22%20height%3D%22280%22%20fill%3D%22url%28%23g%29%22%2F%3E%0A%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22400%22%20height%3D%223%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.6%22%2F%3E%0A%20%20%3Cline%20x1%3D%22176%22%20y1%3D%2288%22%20x2%3D%22224%22%20y2%3D%2288%22%20stroke%3D%22%23C9978A%22%20stroke-width%3D%221%22%20opacity%3D%220.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22200%22%20y%3D%22126%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2215%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%20font-weight%3D%22400%22%3EWarts%20%26%20Verrucae%3C%2Ftext%3E%0A%20%20%0A%20%20%3Ctext%20x%3D%22200%22%20y%3D%22178%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221.5%22%3ECLINICAL%20IMAGE%20COMING%20SOON%3C%2Ftext%3E%0A%3C%2Fsvg%3E')"></div>
                   <span class="mp-condition-label">Warts &amp; Verrucae</span>
                 </div>
               </div>
@@ -4175,12 +4209,9 @@ function goTo(page, btn) {
     });
   }
 
-  // Close mobile menu + reset burger icon to hamburger
+  // Close mobile menu
   var mob = document.getElementById('navMobileMenu');
   if (mob) mob.classList.remove('open');
-  var brg = document.getElementById('navBurger');
-  if (brg) brg.classList.remove('open');
-
 
   // Scroll to top
   window.scrollTo(0, 0);
@@ -4188,9 +4219,7 @@ function goTo(page, btn) {
 
 function toggleMobileNav() {
   var menu = document.getElementById('navMobileMenu');
-  var burger = document.getElementById('navBurger');
   if (menu) menu.classList.toggle('open');
-  if (burger) burger.classList.toggle('open');
 }
 
 // =====================================================
