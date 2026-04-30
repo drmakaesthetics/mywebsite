@@ -2838,6 +2838,215 @@ details.tx-item-card[open] .tx-summary-caret::before {
   html, body { overflow-x: hidden !important; }
 }
 
+
+/* ── Featured Treatments (homepage) ── */
+.featured-treats { background:#fff; padding:64px 64px 56px; border-top:1px solid var(--border-lt); }
+.ft-header { margin-bottom:40px; }
+.ft-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1300px; margin:0 auto; }
+.ft-card { cursor:pointer; background:var(--off); border:1px solid var(--border-lt); overflow:hidden; transition:transform .28s,box-shadow .28s; }
+.ft-card:hover { transform:translateY(-4px); box-shadow:var(--sg); }
+.ft-card-img { height:180px; background-size:cover; background-position:center; }
+.ft-card-body { padding:18px 20px 20px; }
+.ft-card-body h4 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:400; color:var(--dark); margin-bottom:6px; }
+.ft-card-body p { font-size:.78rem; color:var(--txt-mid); line-height:1.6; }
+
+/* ── About strip (homepage) ── */
+.home-about-strip { background:var(--dark); padding:64px; }
+.home-about-inner { display:grid; grid-template-columns:1fr 320px; gap:64px; max-width:1200px; margin:0 auto; align-items:center; }
+.home-about-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); color:#fff; font-weight:400; line-height:1.1; margin-bottom:18px; }
+.home-about-title em { color:var(--gold-lt); font-style:italic; }
+.home-about-text p { font-size:.84rem; color:rgba(255,255,255,.5); line-height:1.8; margin-bottom:24px; max-width:540px; }
+.home-about-creds { display:flex; flex-direction:column; gap:20px; }
+.home-cred-item { border-left:2px solid var(--blush); padding:10px 16px; }
+.home-cred-num { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold-lt); font-weight:300; line-height:1; }
+.home-cred-label { font-family:'Outfit',sans-serif; font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-top:3px; }
+
+/* ── Hero overlay stronger ── */
+.slide-overlay { background: linear-gradient(to bottom, rgba(0,0,0,.40) 0%, rgba(0,0,0,.22) 40%, rgba(0,0,0,.52) 100%) !important; }
+
+/* ── Hero text bigger on mobile ── */
+@media (max-width:640px) {
+  .hero-title { font-size:clamp(2.2rem,9vw,3.8rem) !important; }
+  .hero-sub { font-size:.9rem !important; }
+  .trust-pill { font-size:.52rem !important; }
+}
+
+/* ── Footer mobile stacking ── */
+@media (max-width:700px) {
+  .footer-top { grid-template-columns:1fr !important; gap:32px !important; padding:36px 24px !important; }
+  .footer-brand, .footer-col, .footer-contact { width:100%; }
+  .footer-top > * { border-bottom:1px solid rgba(255,255,255,.06); padding-bottom:24px; }
+}
+
+/* ── Featured treatments mobile ── */
+@media (max-width:900px) {
+  .ft-cards { grid-template-columns:1fr 1fr; gap:14px; }
+  .featured-treats { padding:40px 24px 36px; }
+}
+@media (max-width:560px) {
+  .ft-cards { grid-template-columns:1fr; }
+  .ft-card-img { height:150px; }
+}
+
+/* ── About strip mobile ── */
+@media (max-width:900px) {
+  .home-about-inner { grid-template-columns:1fr; gap:32px; }
+  .home-about-strip { padding:40px 24px; }
+  .home-about-creds { flex-direction:row; flex-wrap:wrap; gap:12px; }
+  .home-cred-item { flex:1; min-width:100px; }
+}
+
+
+/* ── Legal pages ── */
+.legal-hero{background:var(--dark);padding:60px 64px 52px}
+.legal-hero h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;font-weight:400;margin:10px 0 12px}
+.legal-meta{font-family:'Outfit',sans-serif;font-size:.72rem;color:rgba(255,255,255,.38);letter-spacing:.08em}
+.legal-body{max-width:860px;margin:0 auto;padding:52px 64px 80px}
+.legal-intro{padding:24px 0 32px;border-bottom:1px solid var(--border-lt);margin-bottom:40px}
+.legal-intro p{font-size:.88rem;color:var(--txt-mid);line-height:1.8}
+.legal-section{display:grid;grid-template-columns:48px 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--border-lt)}
+.legal-section-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--blush-pale);font-weight:300;line-height:1.2;padding-top:2px}
+.legal-section-body h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--dark);font-weight:400;margin-bottom:10px}
+.legal-section-body p{font-size:.82rem;color:var(--txt-mid);line-height:1.78;margin-bottom:8px}
+.legal-section-body a{color:var(--blush);text-decoration:none}
+.legal-section-body a:hover{text-decoration:underline}
+.legal-list{list-style:none;margin:8px 0;display:flex;flex-direction:column;gap:5px}
+.legal-list li{font-size:.82rem;color:var(--txt-mid);padding-left:16px;position:relative;line-height:1.6}
+.legal-list li::before{content:'--';position:absolute;left:0;color:var(--blush);font-size:.76rem}
+.legal-consent-box{background:var(--off);border-left:3px solid var(--blush);padding:20px 24px;margin:36px 0 0}
+.legal-consent-box h4{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--dark);margin-bottom:6px}
+.legal-consent-box p{font-size:.8rem;color:var(--txt-mid);line-height:1.6}
+.legal-back-btn{margin-top:40px;padding-top:32px;border-top:1px solid var(--border-lt)}
+@media(max-width:700px){.legal-hero{padding:40px 24px}.legal-body{padding:36px 24px 60px}.legal-section{grid-template-columns:36px 1fr;gap:12px}}
+
+/* ============================================================
+   DARK SECTION TEXT VISIBILITY FIX
+   Ensures all text in dark-background sections is white/light
+============================================================ */
+
+/* Home About Strip */
+.home-about-strip {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+.home-about-inner {
+  position: relative;
+  z-index: 2;
+}
+.home-about-title {
+  color: #ffffff !important;
+  font-family: 'Cormorant Garamond', serif;
+}
+.home-about-title em { color: var(--gold-lt) !important; }
+.home-about-text .eyebrow { color: var(--blush-lt) !important; }
+.home-about-text .gold-bar { background: var(--blush) !important; }
+.home-about-text p { color: rgba(255,255,255,.72) !important; }
+.home-about-text .btn-outline {
+  border-color: rgba(255,255,255,.45) !important;
+  color: #ffffff !important;
+}
+.home-about-text .btn-outline:hover {
+  background: rgba(255,255,255,.1) !important;
+}
+.home-cred-num   { color: var(--gold-lt) !important; }
+.home-cred-label { color: rgba(255,255,255,.45) !important; }
+
+/* About page CTA strip */
+.ab-cta {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+.ab-cta-title { color: #ffffff !important; }
+.ab-cta-sub   { color: rgba(255,255,255,.65) !important; }
+
+/* Plans hero */
+.plans-hero {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+.plans-hero h2 { color: #ffffff !important; }
+.plans-hero p  { color: rgba(255,255,255,.62) !important; }
+.plans-hero .eyebrow { color: var(--blush-lt) !important; }
+
+/* Plans CTA strip */
+.plans-cta-strip {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+.plans-cta-strip h3 { color: #ffffff !important; }
+.plans-cta-strip p  { color: rgba(255,255,255,.62) !important; }
+
+/* BA hero */
+.ba-hero {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+.ba-hero h2   { color: #ffffff !important; }
+.ba-hero p    { color: rgba(255,255,255,.55) !important; }
+.ba-hero .eyebrow { color: var(--blush-lt) !important; }
+
+/* AB (About page) body sections with dark bg */
+.ab-body { position: relative; z-index: 1; }
+.ab-section-title { color: var(--dark) !important; }
+.ab-section-title em { color: var(--blush) !important; }
+
+/* Legal hero */
+.legal-hero {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+.legal-hero h2     { color: #ffffff !important; }
+.legal-meta        { color: rgba(255,255,255,.45) !important; }
+.legal-hero .eyebrow { color: var(--blush-lt) !important; }
+
+/* Stats bar — may also have dark bg */
+.stats-bar {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure btn-outline is visible on dark backgrounds */
+.home-about-strip .btn,
+.ab-cta .btn,
+.plans-cta-strip .btn,
+.ba-hero .btn {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ── ab-cta: light background override ── */
+.ab-cta {
+  background: #FFF7F8 !important;
+  border-top: 1px solid #f0dada;
+}
+.ab-cta-title {
+  color: #1A1A1A !important;
+  font-family: 'Cormorant Garamond', serif;
+}
+.ab-cta-sub {
+  color: #6F5F5F !important;
+}
+.ab-cta .gold-bar {
+  background: var(--blush) !important;
+}
+/* btn-outline on light bg: rose-gold border + dark text */
+.ab-cta .btn-outline {
+  border-color: var(--blush) !important;
+  color: var(--blush) !important;
+  background: transparent !important;
+}
+.ab-cta .btn-outline:hover {
+  background: var(--blush) !important;
+  color: #ffffff !important;
+}
+
 </style>
 </head>
 <body>
@@ -2865,7 +3074,7 @@ details.tx-item-card[open] .tx-summary-caret::before {
         <button class="nav-link" onclick="goTo('concerns',this)">Skin Concerns</button>
         <button class="nav-link" onclick="goTo('treatments',this)">Aesthetic Treatments</button>
         <button class="nav-link" onclick="goTo('medical',this)">Medical Treatments</button>
-        <button class="nav-link" onclick="goTo('plans',this)">Plans, Offers &amp; Membership</button>
+        <button class="nav-link" onclick="goTo('plans',this)">Consultation &amp; Offers</button>
         <button class="nav-link" onclick="goTo('quiz',this)">Find My Treatment</button>
         <button class="nav-link" onclick="goTo('results',this)">Before &amp; After</button>
         <button class="nav-link" onclick="goTo('about',this)">About Dr MAK</button>
@@ -2884,7 +3093,7 @@ details.tx-item-card[open] .tx-summary-caret::before {
     <button onclick="goTo('concerns',null)">Skin Concerns</button>
     <button onclick="goTo('treatments',null)">Aesthetic Treatments</button>
     <button onclick="goTo('medical',null)">Medical Treatments</button>
-    <button onclick="goTo('plans',null)">Plans, Offers &amp; Membership</button>
+    <button onclick="goTo('plans',null)">Consultation &amp; Offers</button>
     <button onclick="goTo('quiz',null)">Find My Treatment</button>
     <button onclick="goTo('results',null)">Before &amp; After</button>
     <button onclick="goTo('about',null)">About Dr MAK</button>
@@ -2902,7 +3111,7 @@ details.tx-item-card[open] .tx-summary-caret::before {
   <button onclick="goTo('concerns',null);toggleMobileDrawer()">Skin Concerns</button>
   <button onclick="goTo('treatments',null);toggleMobileDrawer()">Aesthetic Treatments</button>
   <button onclick="goTo('medical',null);toggleMobileDrawer()">Medical Treatments</button>
-  <button onclick="goTo('plans',null);toggleMobileDrawer()">Plans, Offers &amp; Membership</button>
+  <button onclick="goTo('plans',null);toggleMobileDrawer()">Consultation &amp; Offers</button>
   <button onclick="goTo('quiz',null);toggleMobileDrawer()">Find My Treatment</button>
   <button onclick="goTo('results',null);toggleMobileDrawer()">Before &amp; After</button>
   <button onclick="goTo('about',null);toggleMobileDrawer()">About Dr MAK</button>
@@ -2917,9 +3126,8 @@ details.tx-item-card[open] .tx-summary-caret::before {
       <div class="page active" id="page-home">
         <div class="hero-slideshow" id="heroSlideshow">
 
-          <!-- Slide 1 -->
           <div class="hero-slide active" id="slide-0">
-            <div class="slide-bg sb-1" style="background-image:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=85')"></div>
+            <div class="slide-bg sb-1" style="background-image:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1800&q=85')"></div>
             <div class="slide-overlay"></div>
             <div class="slide-content">
               <div class="hero-brand-text">
@@ -2933,24 +3141,20 @@ details.tx-item-card[open] .tx-summary-caret::before {
               </div>
               <h1 class="hero-title">Doctor-Led<br><em>Aesthetic Clinic</em></h1>
               <p class="hero-sub">Subtle, natural results delivered with precision, safety and clinical expertise.</p>
-              <p class="hero-dr-line">Led by Dr MAK, a GMC-registered doctor with over 6 years of clinical experience.</p>
               <div class="hero-trust">
                 <span class="trust-pill">GMC Registered</span>
-                <span class="trust-pill">Doctor-Led Treatments</span>
+                <span class="trust-pill">Doctor-Led</span>
                 <span class="trust-pill">4+ Years Experience</span>
               </div>
-              <p class="hero-tagline-main">REPAIR <span>&#x2726;</span> REJUVENATE <span>&#x2726;</span> REVIVE</p>
               <div class="hero-actions">
                 <button class="btn btn-gold" onclick="goTo('booking',null)">Book Consultation</button>
-                <button class="btn btn-ghost" onclick="goTo('treatments',null)">Explore Treatments</button>
-                <button class="btn btn-ghost" onclick="goTo('concerns',null)">Explore Skin Concerns</button>
+                <button class="btn btn-ghost" onclick="goTo('treatments',null)">View Treatments</button>
               </div>
             </div>
           </div>
 
-          <!-- Slide 2 -->
           <div class="hero-slide" id="slide-1">
-            <div class="slide-bg sb-2" style="background-image:url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1920&q=85')"></div>
+            <div class="slide-bg sb-2" style="background-image:url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1800&q=85')"></div>
             <div class="slide-overlay"></div>
             <div class="slide-content">
               <div class="hero-brand-text">
@@ -2963,24 +3167,21 @@ details.tx-item-card[open] .tx-summary-caret::before {
                 <div class="hero-line"></div>
               </div>
               <h1 class="hero-title">Your Skin.<br><em>Perfected.</em></h1>
-              <p class="hero-sub">From fine lines and volume loss to acne and pigmentation &mdash; every concern treated with clinical precision.</p>
-              <p class="hero-dr-line">Dr MAK combines advanced medical training with an artistic eye for natural, balanced results.</p>
+              <p class="hero-sub">From fine lines and volume loss to skin health — every concern treated with clinical precision.</p>
               <div class="hero-trust">
                 <span class="trust-pill">GMC Registered</span>
-                <span class="trust-pill">Doctor-Led Treatments</span>
+                <span class="trust-pill">Doctor-Led</span>
                 <span class="trust-pill">4+ Years Experience</span>
               </div>
-              <p class="hero-tagline-main">REPAIR <span>&#x2726;</span> REJUVENATE <span>&#x2726;</span> REVIVE</p>
               <div class="hero-actions">
-                <button class="btn btn-gold" onclick="goTo('concerns',null)">Explore Skin Concerns</button>
-                <button class="btn btn-ghost" onclick="goTo('quiz',null)">Find My Treatment</button>
+                <button class="btn btn-gold" onclick="goTo('booking',null)">Book Consultation</button>
+                <button class="btn btn-ghost" onclick="goTo('treatments',null)">View Treatments</button>
               </div>
             </div>
           </div>
 
-          <!-- Slide 3 -->
           <div class="hero-slide" id="slide-2">
-            <div class="slide-bg sb-3" style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1800&q=80')"></div>
+            <div class="slide-bg sb-3" style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1800&q=85')"></div>
             <div class="slide-overlay"></div>
             <div class="slide-content">
               <div class="hero-brand-text">
@@ -2993,24 +3194,21 @@ details.tx-item-card[open] .tx-summary-caret::before {
                 <div class="hero-line"></div>
               </div>
               <h1 class="hero-title">Clinical Safety.<br><em>Exceptional Care.</em></h1>
-              <p class="hero-sub">Consultation-first. Emergency reversal agents on-site. Full complication management as standard.</p>
-              <p class="hero-dr-line">Dr MAK is a GMC-registered doctor &mdash; bringing hospital-grade safety standards to every treatment.</p>
+              <p class="hero-sub">Consultation-first. Reversal agents on-site. Full complication management as standard.</p>
               <div class="hero-trust">
                 <span class="trust-pill">GMC Registered</span>
-                <span class="trust-pill">Doctor-Led Treatments</span>
+                <span class="trust-pill">Doctor-Led</span>
                 <span class="trust-pill">4+ Years Experience</span>
               </div>
-              <p class="hero-tagline-main">REPAIR <span>&#x2726;</span> REJUVENATE <span>&#x2726;</span> REVIVE</p>
               <div class="hero-actions">
                 <button class="btn btn-gold" onclick="goTo('booking',null)">Book Consultation</button>
-                <button class="btn btn-ghost" onclick="goTo('plans',null)">View Pricing</button>
+                <button class="btn btn-ghost" onclick="goTo('treatments',null)">View Treatments</button>
               </div>
             </div>
           </div>
 
-          <!-- Slide 4 -->
           <div class="hero-slide" id="slide-3">
-            <div class="slide-bg sb-4" style="background-image:url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1920&q=85')"></div>
+            <div class="slide-bg sb-4" style="background-image:url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1800&q=85')"></div>
             <div class="slide-overlay"></div>
             <div class="slide-content">
               <div class="hero-brand-text">
@@ -3019,26 +3217,23 @@ details.tx-item-card[open] .tx-summary-caret::before {
               </div>
               <div class="hero-eyebrow-row">
                 <div class="hero-line"></div>
-                <span class="eyebrow">Glow Membership &bull; Now Available</span>
+                <span class="eyebrow">Personalised &bull; Doctor-Led</span>
                 <div class="hero-line"></div>
               </div>
-              <h1 class="hero-title">Invest In<br><em>Your Glow</em></h1>
-              <p class="hero-sub">Priority access, exclusive savings and ongoing skin health management. From &pound;49/month.</p>
-              <p class="hero-dr-line">Ongoing care, personally overseen by Dr MAK at our Glasgow and Edinburgh clinics.</p>
+              <h1 class="hero-title">Bespoke Plans.<br><em>Honest Advice.</em></h1>
+              <p class="hero-sub">No fixed price list. Pricing discussed openly at consultation based on your individual goals.</p>
               <div class="hero-trust">
                 <span class="trust-pill">GMC Registered</span>
-                <span class="trust-pill">Doctor-Led Treatments</span>
+                <span class="trust-pill">Doctor-Led</span>
                 <span class="trust-pill">4+ Years Experience</span>
               </div>
-              <p class="hero-tagline-main">REPAIR <span>&#x2726;</span> REJUVENATE <span>&#x2726;</span> REVIVE</p>
               <div class="hero-actions">
-                <button class="btn btn-gold" onclick="goTo('plans',null)">Join the Membership</button>
-                <button class="btn btn-ghost" onclick="goTo('plans',null)">View Offers</button>
+                <button class="btn btn-gold" onclick="goTo('booking',null)">Book Consultation</button>
+                <button class="btn btn-ghost" onclick="goTo('treatments',null)">View Treatments</button>
               </div>
             </div>
           </div>
 
-          <!-- Controls -->
           <button class="slide-prev" onclick="prevSlide()" aria-label="Previous slide">&#8249;</button>
           <button class="slide-next" onclick="nextSlide()" aria-label="Next slide">&#8250;</button>
           <div class="slide-dots" id="slideDots">
@@ -3050,7 +3245,46 @@ details.tx-item-card[open] .tx-summary-caret::before {
         </div>
 
         <!-- PILLARS -->
-        <div class="why-section">
+        
+        <!-- Featured Treatments -->
+        <div class="featured-treats">
+          <div class="ft-header">
+            <div class="gold-bar" style="margin:0 auto 16px"></div>
+            <span class="eyebrow" style="display:block;text-align:center;margin-bottom:10px">Popular Treatments</span>
+            <h2 style="text-align:center;color:var(--dark);margin-bottom:8px">Featured<br><em>Treatments</em></h2>
+          </div>
+          <div class="ft-cards">
+            <div class="ft-card" onclick="goTo('treatments',null)">
+              <div class="ft-card-img" style="background-image:url('https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80')"></div>
+              <div class="ft-card-body">
+                <h4>Anti-Wrinkle Treatments</h4>
+                <p>Natural-looking results for forehead lines, frown lines and crow&rsquo;s feet.</p>
+              </div>
+            </div>
+            <div class="ft-card" onclick="goTo('treatments',null)">
+              <div class="ft-card-img" style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80')"></div>
+              <div class="ft-card-body">
+                <h4>Dermal Fillers</h4>
+                <p>Lip enhancement, cheek definition and jawline contouring with precision filler.</p>
+              </div>
+            </div>
+            <div class="ft-card" onclick="goTo('treatments',null)">
+              <div class="ft-card-img" style="background-image:url('https://images.unsplash.com/photo-1596704017254-9b5e2a025acf?w=600&q=80')"></div>
+              <div class="ft-card-body">
+                <h4>Non-Surgical Rhinoplasty</h4>
+                <p>Subtle nose reshaping without surgery using carefully placed filler.</p>
+              </div>
+            </div>
+            <div class="ft-card" onclick="goTo('treatments',null)">
+              <div class="ft-card-img" style="background-image:url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80')"></div>
+              <div class="ft-card-body">
+                <h4>Skin Boosters</h4>
+                <p>Profhilo and hyaluronic acid skin boosters for deep hydration and natural glow.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+<div class="why-section">
           <div class="why-inner">
             <div class="why-header">
               <div class="gold-bar" style="margin:0 auto 20px"></div>
@@ -3111,17 +3345,49 @@ details.tx-item-card[open] .tx-summary-caret::before {
         
 
         <!-- NAV CARDS -->
-        <div class="home-nav-cards">
-          <div class="nav-card" onclick="goTo('concerns',null)"><div class="nc-arrow">→</div><div class="nc-icon">🔍</div><h3>Skin Concerns</h3><p>Explore common skin and aesthetic concerns with our interactive facial map.</p></div>
-          <div class="nav-card" onclick="goTo('treatments',null)"><div class="nc-arrow">→</div><div class="nc-icon">💉</div><h3>Our Treatments</h3><p>From anti-wrinkle and fillers to skin boosters, peels and polynucleotides.</p></div>
-          <div class="nav-card" onclick="goTo('plans',null)"><div class="nc-arrow">→</div><div class="nc-icon">💷</div><h3>Transparent Pricing</h3><p>Clear, honest pricing with no hidden charges.</p></div>
-          <div class="nav-card" onclick="goTo('plans',null)"><div class="nc-arrow">→</div><div class="nc-icon">📦</div><h3>Treatment Packages</h3><p>Curated treatment bundles for better results and better value.</p></div>
-          <div class="nav-card" onclick="goTo('quiz',null)"><div class="nc-arrow">→</div><div class="nc-icon">✨</div><h3>Find My Treatment</h3><p>Take our 4-question skin quiz for a personalised recommendation.</p></div>
-          <div class="nav-card" onclick="goTo('booking',null)"><div class="nc-arrow">→</div><div class="nc-icon">📅</div><h3>Book a Consultation</h3><p>Every journey starts here — Glasgow and Edinburgh clinics available.</p></div>
+                <div class="home-nav-cards">
+          <div class="nav-card" onclick="goTo('concerns',null)">
+            <div class="nc-arrow">&rarr;</div>
+            <h3>Skin Concerns</h3>
+            <p>Explore common skin and aesthetic concerns with our interactive facial map.</p>
+          </div>
+          <div class="nav-card" onclick="goTo('treatments',null)">
+            <div class="nc-arrow">&rarr;</div>
+            <h3>Aesthetic Treatments</h3>
+            <p>Anti-wrinkle, fillers, skin boosters, polynucleotides and medical-grade skin health.</p>
+          </div>
+          <div class="nav-card" onclick="goTo('plans',null)">
+            <div class="nc-arrow">&rarr;</div>
+            <h3>Consultation &amp; Offers</h3>
+            <p>Personalised treatment planning discussed openly at consultation, with no fixed price list.</p>
+          </div>
+          <div class="nav-card" onclick="goTo('quiz',null)">
+            <div class="nc-arrow">&rarr;</div>
+            <h3>Find My Treatment</h3>
+            <p>Not sure where to start? Answer a few questions to discover the right treatment for you.</p>
+          </div>
         </div>
       
         <!-- ── Homepage reviews strip ── -->
-        <div class="home-reviews">
+        
+        <!-- About Dr MAK summary -->
+        <div class="home-about-strip">
+          <div class="home-about-inner">
+            <div class="home-about-text">
+              <div class="gold-bar" style="margin-bottom:16px"></div>
+              <span class="eyebrow" style="display:block;margin-bottom:12px">About Dr MAK</span>
+              <h2 class="home-about-title">A Doctor.<br><em>Not Just an Injector.</em></h2>
+              <p>Dr MAK is a UK-trained doctor with over 4 years of clinical experience across multiple surgical specialties including vascular surgery, ENT, urology and trauma &amp; orthopaedics. With a strong foundation in anatomy and precision-based procedures, he brings a doctor-led approach to aesthetic medicine focused on natural, safe and refined results.</p>
+              <button class="btn btn-outline" onclick="goTo('about',null)">Learn More &rarr;</button>
+            </div>
+            <div class="home-about-creds">
+              <div class="home-cred-item"><div class="home-cred-num">4+</div><div class="home-cred-label">Years Clinical Experience</div></div>
+              <div class="home-cred-item"><div class="home-cred-num">GMC</div><div class="home-cred-label">Registered Doctor</div></div>
+              <div class="home-cred-item"><div class="home-cred-num">UoG</div><div class="home-cred-label">Honorary Clinical Fellow</div></div>
+            </div>
+          </div>
+        </div>
+<div class="home-reviews">
           <div class="home-reviews-inner">
             <div class="home-rv-header">
               <div class="gold-bar" style="margin:0 auto 16px"></div>
@@ -3256,7 +3522,7 @@ details.tx-item-card[open] .tx-summary-caret::before {
             <p class="ab-cta-sub">Book a no-obligation consultation with Dr MAK to discuss your goals and find out what is right for you.</p>
             <div class="ab-cta-btns">
               <button class="btn btn-gold" onclick="goTo('booking',null)">Book Consultation</button>
-              <button class="btn btn-outline" onclick="goTo('treatments',null)">Explore Treatments</button>
+              <button class="btn btn-outline" onclick="goTo('treatments',null)">View Our Treatments</button>
             </div>
           </div>
 
@@ -3885,17 +4151,15 @@ details.tx-item-card[open] .tx-summary-caret::before {
 
       <div class="page" id="page-plans">
 
-        <!-- Hero -->
         <div class="plans-hero">
           <div class="gold-bar"></div>
-          <span class="eyebrow" style="color:var(--blush-lt)">Plans, Offers &amp; Membership</span>
-          <h2>Plans, Offers<br><em>&amp; Membership</em></h2>
-          <p>Every face is different. Rather than a fixed price list, Dr MAK discusses your goals, anatomy and options at consultation — then builds a plan that is right for you, not a template.</p>
+          <span class="eyebrow" style="color:var(--blush-lt)">Consultation &amp; Offers</span>
+          <h2>Doctor-Led Planning.<br><em>Transparent Values.</em></h2>
+          <p>Every treatment plan is personal. Dr MAK discusses your goals, anatomy and options during consultation &mdash; with honest, bespoke guidance and no fixed price list.</p>
         </div>
 
         <div class="plans-body">
 
-          <!-- HOW PRICING WORKS -->
           <div class="plans-section">
             <div class="plans-section-header">
               <div class="gold-bar" style="margin-bottom:14px"></div>
@@ -3906,12 +4170,12 @@ details.tx-item-card[open] .tx-summary-caret::before {
               <div class="plans-how-item">
                 <div class="plans-how-num">01</div>
                 <h4>Book a Consultation</h4>
-                <p>Your journey begins with a full consultation. Dr MAK reviews your concerns, medical history and aesthetic goals — no pressure, no obligation.</p>
+                <p>Your journey begins with a full consultation. Dr MAK reviews your concerns, medical history and aesthetic goals &mdash; no pressure, no obligation.</p>
               </div>
               <div class="plans-how-item">
                 <div class="plans-how-num">02</div>
                 <h4>Receive Your Plan</h4>
-                <p>A personalised treatment plan is created for you. Options, timeline and investment are discussed openly and honestly during the appointment.</p>
+                <p>A personalised treatment plan is created for you. Options, timeline and investment are discussed openly and honestly during your appointment.</p>
               </div>
               <div class="plans-how-item">
                 <div class="plans-how-num">03</div>
@@ -3926,86 +4190,27 @@ details.tx-item-card[open] .tx-summary-caret::before {
             </div>
           </div>
 
-          <!-- TREATMENT PACKAGES -->
-          <div class="plans-section plans-section-alt">
-            <div class="plans-section-header">
-              <div class="gold-bar" style="margin-bottom:14px"></div>
-              <span class="eyebrow">Curated Packages</span>
-              <h3>Treatment Packages</h3>
-              <p class="plans-section-sub">Treatments combined for better results — designed by a doctor for real, lasting transformation. Package investment is discussed and agreed at consultation.</p>
-            </div>
-            <div class="pkg-body">
-              <div class="pkg-card"><div class="pkg-top"><div class="pkg-ey">Starter</div><h3>Aesthetic Starter</h3></div><div class="pkg-btm"><ul class="pkg-items"><li>Consultation &amp; skin analysis</li><li>Anti-wrinkle treatment (2 areas)</li><li>Lip filler (0.5ml)</li><li>Review appointment</li><li>Aftercare skincare kit</li></ul><div class="plans-price-note">Investment discussed at consultation</div><button class="btn btn-dark" style="width:100%;justify-content:center" onclick="goTo('booking',null)">Book This Package</button></div></div>
-              <div class="pkg-card"><div class="pkg-top rose-bg"><div class="pkg-ey">&#11088; Best Seller</div><h3>Full Face Refresh</h3></div><div class="pkg-btm"><ul class="pkg-items"><li>Full consultation &amp; assessment</li><li>Anti-wrinkle (3 areas)</li><li>Filler (1 area of choice)</li><li>Skin booster treatment</li><li>Aftercare &amp; review</li><li>Personalised skincare advice</li></ul><div class="plans-price-note">Investment discussed at consultation</div><button class="btn btn-gold" style="width:100%;justify-content:center" onclick="goTo('booking',null)">Book This Package</button></div></div>
-              <div class="pkg-card"><div class="pkg-top"><div class="pkg-ey">Skin Glow</div><h3>Glow Package</h3></div><div class="pkg-btm"><ul class="pkg-items"><li>Skin consultation</li><li>Profhilo skin booster</li><li>Chemical peel</li><li>Medical skincare prescription</li><li>Review included</li></ul><div class="plans-price-note">Investment discussed at consultation</div><button class="btn btn-dark" style="width:100%;justify-content:center" onclick="goTo('booking',null)">Book This Package</button></div></div>
-              <div class="pkg-card"><div class="pkg-top"><div class="pkg-ey">Special Occasion</div><h3>Wedding Package</h3></div><div class="pkg-btm"><ul class="pkg-items"><li>Pre-wedding consultation (12 wks prior)</li><li>Anti-wrinkle (3 areas)</li><li>Lip filler</li><li>Skin booster x2 sessions</li><li>Chemical peel</li><li>Final review pre-event</li></ul><div class="plans-price-note">Investment discussed at consultation</div><button class="btn btn-dark" style="width:100%;justify-content:center" onclick="goTo('booking',null)">Book This Package</button></div></div>
-              <div class="pkg-card"><div class="pkg-top"><div class="pkg-ey">Skin Health</div><h3>Clear Skin Package</h3></div><div class="pkg-btm"><ul class="pkg-items"><li>Medical skin consultation</li><li>Acne skin assessment</li><li>Chemical peel course (x3)</li><li>Prescribed medical skincare</li><li>Monthly review</li></ul><div class="plans-price-note">Investment discussed at consultation</div><button class="btn btn-dark" style="width:100%;justify-content:center" onclick="goTo('booking',null)">Book This Package</button></div></div>
-              <div class="pkg-card"><div class="pkg-top"><div class="pkg-ey">Maintenance</div><h3>Maintenance Package</h3></div><div class="pkg-btm"><ul class="pkg-items"><li>Anti-wrinkle (3 areas)</li><li>Skin booster top-up</li><li>Skincare review</li><li>Priority booking</li><li>Loyalty discount applied</li></ul><div class="plans-price-note">Investment discussed at consultation</div><button class="btn btn-dark" style="width:100%;justify-content:center" onclick="goTo('booking',null)">Book This Package</button></div></div>
-            </div>
-          </div>
-
-          <!-- GLOW MEMBERSHIP -->
-          <div class="plans-section">
-            <div class="plans-section-header">
-              <div class="gold-bar" style="margin-bottom:14px"></div>
-              <span class="eyebrow">Monthly Membership</span>
-              <h3>The Glow Membership</h3>
-              <p class="plans-section-sub">Join our exclusive membership for priority access, ongoing savings and a holistic approach to maintaining your skin health. Membership fee discussed at consultation.</p>
-            </div>
-            <div class="mem-layout plans-mem-layout">
-              <div class="mem-left">
-                <div class="eyebrow" style="margin-bottom:14px">Why Join?</div>
-                <p style="font-size:.84rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:28px">Regular treatments, consistent skin management and a doctor who knows your skin history — that is the foundation of genuinely transformative results over time.</p>
-                <button class="btn btn-gold" onclick="goTo('booking',null)">Join the Membership</button>
-              </div>
-              <div class="mem-right">
-                <div class="mem-card">
-                  <div class="mem-name">Glow Membership</div>
-                  <div class="mem-sub">Monthly &middot; Cancel Anytime</div>
-                  <div class="mem-price">Monthly membership<br><small>Fee discussed at consultation</small></div>
-                  <ul class="mem-perks">
-                    <li>Free initial consultation included</li>
-                    <li>10% off all treatments, always</li>
-                    <li>Priority booking &mdash; first access to appointment slots</li>
-                    <li>Free annual skin analysis</li>
-                    <li>Birthday treatment offer</li>
-                    <li>Monthly expert skincare advice &amp; tips</li>
-                    <li>Members-only seasonal packages</li>
-                  </ul>
-                  <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="goTo('booking',null)">Become a Member</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- CTA -->
-
-          <!-- CURRENT OFFERS -->
           <div class="plans-section plans-section-alt" id="plans-offers">
             <div class="plans-section-header">
               <div class="gold-bar" style="margin-bottom:14px"></div>
               <span class="eyebrow">Exclusive Promotions</span>
               <h3>Current Offers</h3>
-              <p class="plans-section-sub">Exclusive offers for new clients, members and loyal patients. Limited availability — book early to secure your place.</p>
+              <p class="plans-section-sub">Exclusive offers for new clients and returning patients. Limited availability &mdash; book early to secure your place.</p>
             </div>
             <div class="of-grid">
-              <div class="of-card"><div class="of-icon-wrap">🌟</div><div><h3>New Client Offer</h3><p>First-time clients receive a complimentary skin consultation and 10% off their first treatment when booked online.</p><span class="of-badge">First Visit Only</span></div></div>
-              <div class="of-card"><div class="of-icon-wrap">👯</div><div><h3>Refer a Friend</h3><p>Refer a friend to DR MAK Aesthetics and both you and your friend receive credit towards your next treatment.</p><span class="of-badge">Ongoing</span></div></div>
-              <div class="of-card"><div class="of-icon-wrap">📦</div><div><h3>Bundle &amp; Save</h3><p>Book anti-wrinkle and skin booster together and save. The perfect combination for overall facial rejuvenation.</p><span class="of-badge">Ask at Consultation</span></div></div>
-              <div class="of-card"><div class="of-icon-wrap">🎂</div><div><h3>Birthday Offer</h3><p>Celebrate your birthday month with 15% off any single treatment. Members receive an additional complimentary skin booster shot.</p><span class="of-badge">Members Enhanced</span></div></div>
-              <div class="of-card"><div class="of-icon-wrap">🔃</div><div><h3>Loyalty Reward</h3><p>After your 5th treatment, receive a complimentary skin booster top-up. Our way of saying thank you for your loyalty.</p><span class="of-badge">Loyalty</span></div></div>
-              <div class="of-card"><div class="of-icon-wrap">💎</div><div><h3>Membership Launch Offer</h3><p>Join the Glow Membership in our opening month and receive your first 3 months at a preferential rate. Limited availability.</p><span class="of-badge">Limited Availability</span></div></div>
-            </div>
-            <div class="seasonal-banner">
-              <h3>Spring Skin Reset &mdash; Limited Offer</h3>
-              <p>Chemical peel + skin booster combination treatment &mdash; available at a special rate when booked this month. Contact us for details.</p>
-              <button class="btn btn-gold" onclick="goTo('booking',null)">Claim This Offer</button>
+              <div class="of-card"><div><h3>New Client Offer</h3><p>First-time clients receive a complimentary skin consultation and 10% off their first treatment when booked online.</p><span class="of-badge">First Visit Only</span></div></div>
+              <div class="of-card"><div><h3>Refer a Friend</h3><p>Refer a friend and both you and your friend receive credit towards your next treatment.</p><span class="of-badge">Ongoing</span></div></div>
+              <div class="of-card"><div><h3>Bundle &amp; Save</h3><p>Book anti-wrinkle and skin booster together and save. The perfect combination for overall facial rejuvenation.</p><span class="of-badge">Ask at Consultation</span></div></div>
+              <div class="of-card"><div><h3>Birthday Offer</h3><p>Celebrate your birthday month with 15% off any single treatment.</p><span class="of-badge">Birthday Month</span></div></div>
+              <div class="of-card"><div><h3>Loyalty Reward</h3><p>After your 5th treatment, receive a complimentary skin booster top-up as a thank you for your loyalty.</p><span class="of-badge">Loyalty</span></div></div>
+              <div class="of-card"><div><h3>Spring Skin Reset</h3><p>Chemical peel + skin booster combination treatment at a special rate when booked this month. Contact us for details.</p><span class="of-badge">Limited</span></div></div>
             </div>
           </div>
+
           <div class="plans-cta-strip">
             <div class="gold-bar" style="margin:0 auto 18px"></div>
             <h3>Ready to discuss your plan?</h3>
-            <p>Book a no-obligation consultation with Dr MAK. Your goals, anatomy and options will be discussed openly — with honest, bespoke guidance.</p>
+            <p>Book a no-obligation consultation with Dr MAK. Your goals, anatomy and options will be discussed openly &mdash; with honest, bespoke guidance.</p>
             <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:24px">
               <button class="btn btn-gold" onclick="goTo('booking',null)">Book a Consultation</button>
               <button class="btn btn-ghost" onclick="goTo('treatments',null)">Explore Treatments</button>
@@ -4112,11 +4317,11 @@ details.tx-item-card[open] .tx-summary-caret::before {
           <div class="ba-grid">
             <div class="ba-card" onclick="openLb(0)" style="cursor:pointer">
               <div class="ba-panels">
-                <div class="ba-panel ba-panel-b" style="background-image:url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80');">
+                <div class="ba-panel ba-panel-b" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgLip%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgLip%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-b">Before</span>
                 </div>
                 <div class="ba-panel-divider"><span>&#8644;</span></div>
-                <div class="ba-panel ba-panel-a" style="background-image:url('https://images.unsplash.com/photo-1596704017254-9b5e2a025acf?w=600&q=80');">
+                <div class="ba-panel ba-panel-a" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgLip%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgLip%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-a">After</span>
                 </div>
               </div>
@@ -4129,11 +4334,11 @@ details.tx-item-card[open] .tx-summary-caret::before {
             </div>
             <div class="ba-card" onclick="openLb(1)" style="cursor:pointer">
               <div class="ba-panels">
-                <div class="ba-panel ba-panel-b" style="background-image:url('https://images.unsplash.com/photo-1552058544-f2b08422138a?w=600&q=80');">
+                <div class="ba-panel ba-panel-b" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgAnt%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgAnt%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-b">Before</span>
                 </div>
                 <div class="ba-panel-divider"><span>&#8644;</span></div>
-                <div class="ba-panel ba-panel-a" style="background-image:url('https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80');">
+                <div class="ba-panel ba-panel-a" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgAnt%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgAnt%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-a">After</span>
                 </div>
               </div>
@@ -4146,11 +4351,11 @@ details.tx-item-card[open] .tx-summary-caret::before {
             </div>
             <div class="ba-card" onclick="openLb(2)" style="cursor:pointer">
               <div class="ba-panels">
-                <div class="ba-panel ba-panel-b" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80');">
+                <div class="ba-panel ba-panel-b" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgJaw%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgJaw%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-b">Before</span>
                 </div>
                 <div class="ba-panel-divider"><span>&#8644;</span></div>
-                <div class="ba-panel ba-panel-a" style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80');">
+                <div class="ba-panel ba-panel-a" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgJaw%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgJaw%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-a">After</span>
                 </div>
               </div>
@@ -4163,11 +4368,11 @@ details.tx-item-card[open] .tx-summary-caret::before {
             </div>
             <div class="ba-card" onclick="openLb(3)" style="cursor:pointer">
               <div class="ba-panels">
-                <div class="ba-panel ba-panel-b" style="background-image:url('https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=600&q=80');">
+                <div class="ba-panel ba-panel-b" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgSki%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgSki%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-b">Before</span>
                 </div>
                 <div class="ba-panel-divider"><span>&#8644;</span></div>
-                <div class="ba-panel ba-panel-a" style="background-image:url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80');">
+                <div class="ba-panel ba-panel-a" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgSki%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgSki%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-a">After</span>
                 </div>
               </div>
@@ -4180,11 +4385,11 @@ details.tx-item-card[open] .tx-summary-caret::before {
             </div>
             <div class="ba-card" onclick="openLb(4)" style="cursor:pointer">
               <div class="ba-panels">
-                <div class="ba-panel ba-panel-b" style="background-image:url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80');">
+                <div class="ba-panel ba-panel-b" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgPig%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgPig%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-b">Before</span>
                 </div>
                 <div class="ba-panel-divider"><span>&#8644;</span></div>
-                <div class="ba-panel ba-panel-a" style="background-image:url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&q=80');">
+                <div class="ba-panel ba-panel-a" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgPig%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgPig%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-a">After</span>
                 </div>
               </div>
@@ -4197,11 +4402,11 @@ details.tx-item-card[open] .tx-summary-caret::before {
             </div>
             <div class="ba-card" onclick="openLb(5)" style="cursor:pointer">
               <div class="ba-panels">
-                <div class="ba-panel ba-panel-b" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80');">
+                <div class="ba-panel ba-panel-b" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgUnd%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgUnd%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-b">Before</span>
                 </div>
                 <div class="ba-panel-divider"><span>&#8644;</span></div>
-                <div class="ba-panel ba-panel-a" style="background-image:url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80');">
+                <div class="ba-panel ba-panel-a" style="background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22240%22%20viewBox%3D%220%200%20600%20240%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22bgUnd%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23FFF7F8%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23F9E4E0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22600%22%20height%3D%22240%22%20fill%3D%22url%28%23bgUnd%29%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22600%22%20height%3D%222%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%22299%22%20y%3D%220%22%20width%3D%222%22%20height%3D%22240%22%20fill%3D%22%23C9978A%22%20opacity%3D%220.25%22%2F%3E%3Ctext%20x%3D%22150%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EBefore%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22105%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2213%22%20fill%3D%22%232C1A1A%22%20text-anchor%3D%22middle%22%3EAfter%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EILLUSTRATIVE%3C%2Ftext%3E%3Ctext%20x%3D%22450%22%20y%3D%22125%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23C9978A%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%221%22%3EPLACEHOLDER%3C%2Ftext%3E%3C%2Fsvg%3E');">
                   <span class="ba-panel-lbl ba-lbl-a">After</span>
                 </div>
               </div>
@@ -4213,7 +4418,7 @@ details.tx-item-card[open] .tx-summary-caret::before {
               </div>
             </div>
           </div>
-          <p class="ba-disclaimer">Images are illustrative placeholders. Actual results vary. Clinical before-and-after images will be added following patient consent.</p>
+          <p class="ba-disclaimer" style="display:block">Illustrative placeholders only. Clinical before &amp; after images coming soon following patient consent.</p>
           <div style="text-align:center;margin-top:32px;padding:40px;background:var(--warm-white);border:1px solid var(--border)">
             <span class="eyebrow">Portfolio In Progress</span>
             <h3 style="font-family:'Cormorant Garamond',serif;color:var(--dark);margin:12px 0 14px">Book Your Consultation</h3>
@@ -4320,7 +4525,15 @@ details.tx-item-card[open] .tx-summary-caret::before {
         </div>
       </div>
 
-    </div><!-- /page-content --></div><!-- /page-content -->
+    </div><!-- /page-content -->
+
+<div class="page" id="page-privacy"><div class="legal-hero"><div class="gold-bar"></div><span class="eyebrow">Legal</span><h2>Privacy Policy</h2><p class="legal-meta">Last updated: April 2026 &bull; UK GDPR &amp; Data Protection Act 2018</p></div><div class="legal-body"><div class="legal-intro"><p>Dr MAK Aesthetics is committed to protecting your privacy. This policy explains how we collect, use and protect your personal data. Dr MAK is a UK-trained doctor and adheres to strict medical confidentiality standards.</p></div><div class="legal-section"><div class="legal-section-num">01</div><div class="legal-section-body"><h3>Information We Collect</h3><p>When you book a consultation, we may collect:</p><ul class="legal-list"><li>Full name and contact details</li><li>Date of birth and medical history</li><li>Treatment records and clinical notes</li><li>Clinical photographs (with explicit consent)</li><li>Payment information</li><li>Communication preferences</li></ul></div></div><div class="legal-section"><div class="legal-section-num">02</div><div class="legal-section-body"><h3>How We Use Your Information</h3><p>We use your information to:</p><ul class="legal-list"><li>Provide consultations and treatments</li><li>Maintain accurate medical records</li><li>Communicate about appointments and aftercare</li><li>Process payments</li><li>Comply with legal requirements</li><li>Improve patient care</li></ul></div></div><div class="legal-section"><div class="legal-section-num">03</div><div class="legal-section-body"><h3>Legal Basis for Processing</h3><p>We process your data under:</p><ul class="legal-list"><li><strong>Consent</strong> &ndash; explicit permission</li><li><strong>Contract</strong> &ndash; necessary for treatment</li><li><strong>Legal Obligation</strong> &ndash; record keeping</li><li><strong>Legitimate Interests</strong> &ndash; healthcare delivery</li></ul></div></div><div class="legal-section"><div class="legal-section-num">04</div><div class="legal-section-body"><h3>Data Security</h3><ul class="legal-list"><li>Records stored securely per medical guidelines</li><li>Digital data encrypted and password protected</li><li>Access restricted to authorised personnel</li><li>Systems regularly reviewed</li></ul></div></div><div class="legal-section"><div class="legal-section-num">05</div><div class="legal-section-body"><h3>Data Retention</h3><ul class="legal-list"><li>Medical records &ndash; 8 years minimum from last treatment</li><li>Financial records &ndash; 6 years (HMRC)</li><li>Clinical photos &ndash; per agreed consent duration</li><li>Marketing data &ndash; until consent withdrawn</li></ul></div></div><div class="legal-section"><div class="legal-section-num">06</div><div class="legal-section-body"><h3>Sharing Your Information</h3><p>We do <strong>not</strong> sell your data. We may share with:</p><ul class="legal-list"><li>Healthcare professionals involved in your care (with consent)</li><li>Regulatory bodies if legally required</li><li>Payment processors for secure transactions</li><li>Legal authorities where required by law</li></ul></div></div><div class="legal-section"><div class="legal-section-num">07</div><div class="legal-section-body"><h3>Your Rights Under GDPR</h3><p>You have the right to:</p><ul class="legal-list"><li>Access your data</li><li>Correct inaccurate data</li><li>Request deletion (subject to legal limits)</li><li>Restrict processing</li><li>Request data portability</li><li>Object to processing</li><li>Withdraw consent at any time</li></ul></div></div><div class="legal-section"><div class="legal-section-num">08</div><div class="legal-section-body"><h3>Clinical Photography</h3><ul class="legal-list"><li>Only taken with explicit consent</li><li>Stored as part of medical records</li><li>Not used for marketing without separate consent</li><li>Consent can be withdrawn at any time</li></ul></div></div><div class="legal-section"><div class="legal-section-num">09</div><div class="legal-section-body"><h3>Cookies and Website Data</h3><p>We use essential cookies to support booking functionality and improve security. We do not use advertising tracking cookies.</p></div></div><div class="legal-section"><div class="legal-section-num">10</div><div class="legal-section-body"><h3>Third-Party Services</h3><p>We use Formspree (enquiry submissions), payment processors and email services. All providers comply with GDPR.</p></div></div><div class="legal-section"><div class="legal-section-num">11</div><div class="legal-section-body"><h3>Data Breaches</h3><p>In the event of a breach: the ICO will be notified within 72 hours, affected individuals informed, and immediate remedial action taken.</p></div></div><div class="legal-section"><div class="legal-section-num">12</div><div class="legal-section-body"><h3>Children's Privacy</h3><p>Our services are for individuals aged 18 and over.</p></div></div><div class="legal-section"><div class="legal-section-num">13</div><div class="legal-section-body"><h3>Changes to This Policy</h3><p>We may update this policy periodically. The latest version will always be on our website.</p></div></div><div class="legal-section"><div class="legal-section-num">14</div><div class="legal-section-body"><h3>Contact Us</h3><p>Dr MAK Aesthetics &mdash; Glasgow &amp; Edinburgh<br>Email: <a href="mailto:info@drmakaesthetics.co.uk">info@drmakaesthetics.co.uk</a><br>Phone: +44 7348 138738<br>ICO: <a href="https://www.ico.org.uk" target="_blank" rel="noopener">www.ico.org.uk</a> | 0303 123 1113</p></div></div><div class="legal-consent-box"><h4>Your Consent</h4><p>By using our website and services, you agree to this privacy policy.</p></div><div class="legal-back-btn"><button class="btn btn-dark" onclick="history.back()">Go Back</button></div></div></div>
+
+<div class="page" id="page-terms"><div class="legal-hero"><div class="gold-bar"></div><span class="eyebrow">Legal</span><h2>Terms &amp; Conditions</h2><p class="legal-meta">Last updated: April 2026 &bull; Governed by UK law</p></div><div class="legal-body"><div class="legal-intro"><p>These terms govern your use of Dr MAK Aesthetics services and website. All treatments are carried out in accordance with UK medical standards and regulations.</p></div><div class="legal-section"><div class="legal-section-num">01</div><div class="legal-section-body"><h3>Acceptance of Terms</h3><p>By booking a consultation or treatment, you agree to these terms.</p></div></div><div class="legal-section"><div class="legal-section-num">02</div><div class="legal-section-body"><h3>Services Provided</h3><p>We provide medical aesthetic treatments and consultations.</p><ul class="legal-list"><li>Treatments are personalised</li><li>Results cannot be guaranteed</li><li>Recommendations are based on clinical judgement</li></ul></div></div><div class="legal-section"><div class="legal-section-num">03</div><div class="legal-section-body"><h3>Medical Suitability</h3><p>You must provide accurate medical history, inform us of changes to your health, and follow medical advice. We may refuse treatment if clinically unsafe.</p></div></div><div class="legal-section"><div class="legal-section-num">04</div><div class="legal-section-body"><h3>Consultations</h3><ul class="legal-list"><li>Required before most treatments</li><li>Used to assess suitability and discuss options</li><li>No obligation to proceed</li></ul></div></div><div class="legal-section"><div class="legal-section-num">05</div><div class="legal-section-body"><h3>Booking and Cancellations</h3><ul class="legal-list"><li>Appointments must be booked in advance</li><li>Minimum 24 hours notice required for cancellations</li><li>Late cancellations may incur a fee</li><li>We may reschedule if necessary</li></ul></div></div><div class="legal-section"><div class="legal-section-num">06</div><div class="legal-section-body"><h3>Payment Terms</h3><ul class="legal-list"><li>Payment due at time of treatment</li><li>Prices confirmed during consultation</li><li>Refunds at our discretion</li><li>No fixed pricing &ndash; bespoke approach</li></ul></div></div><div class="legal-section"><div class="legal-section-num">07</div><div class="legal-section-body"><h3>Informed Consent</h3><ul class="legal-list"><li>Written consent required before treatment</li><li>Risks and outcomes explained</li><li>You may withdraw consent anytime before treatment</li></ul></div></div><div class="legal-section"><div class="legal-section-num">08</div><div class="legal-section-body"><h3>Treatment Risks</h3><p>All treatments carry risk. Risks are explained during consultation. Aftercare must be followed. Contact us immediately if concerns arise.</p></div></div><div class="legal-section"><div class="legal-section-num">09</div><div class="legal-section-body"><h3>Aftercare</h3><p>Aftercare instructions are provided. You are responsible for following them. Follow-up may be required.</p></div></div><div class="legal-section"><div class="legal-section-num">10</div><div class="legal-section-body"><h3>Results</h3><ul class="legal-list"><li>Results vary between individuals</li><li>Multiple sessions may be required</li><li>Maintenance treatments may be needed</li></ul></div></div><div class="legal-section"><div class="legal-section-num">11</div><div class="legal-section-body"><h3>Client Responsibilities</h3><p>You must arrive on time, provide accurate information, follow instructions and inform us of any issues.</p></div></div><div class="legal-section"><div class="legal-section-num">12</div><div class="legal-section-body"><h3>Photography</h3><ul class="legal-list"><li>Taken only with consent</li><li>Stored securely</li><li>Marketing use requires separate consent</li></ul></div></div><div class="legal-section"><div class="legal-section-num">13</div><div class="legal-section-body"><h3>Confidentiality</h3><p>All patient information is confidential and protected under UK law.</p></div></div><div class="legal-section"><div class="legal-section-num">14</div><div class="legal-section-body"><h3>Professional Standards</h3><ul class="legal-list"><li>Doctor-led care</li><li>GMC guidelines followed</li><li>Treatments based on best medical practice</li></ul></div></div><div class="legal-section"><div class="legal-section-num">15</div><div class="legal-section-body"><h3>Complaints</h3><p>Contact us at <a href="mailto:info@drmakaesthetics.co.uk">info@drmakaesthetics.co.uk</a>. We will respond promptly and professionally.</p></div></div><div class="legal-section"><div class="legal-section-num">16</div><div class="legal-section-body"><h3>Liability</h3><ul class="legal-list"><li>We are not responsible for unmet expectations</li><li>Not liable if aftercare not followed</li><li>Covered by professional indemnity insurance</li></ul></div></div><div class="legal-section"><div class="legal-section-num">17</div><div class="legal-section-body"><h3>Intellectual Property</h3><p>All website content belongs to Dr MAK Aesthetics.</p></div></div><div class="legal-section"><div class="legal-section-num">18</div><div class="legal-section-body"><h3>Changes to Terms</h3><p>We may update these terms at any time.</p></div></div><div class="legal-section"><div class="legal-section-num">19</div><div class="legal-section-body"><h3>Governing Law</h3><p>These terms are governed by UK law.</p></div></div><div class="legal-section"><div class="legal-section-num">20</div><div class="legal-section-body"><h3>Contact Information</h3><p>Dr MAK Aesthetics &mdash; Glasgow &amp; Edinburgh<br>Email: <a href="mailto:info@drmakaesthetics.co.uk">info@drmakaesthetics.co.uk</a><br>Phone: +44 7348 138738</p></div></div><div class="legal-consent-box"><h4>Acknowledgment</h4><p>By booking, you confirm that you understand the treatments, accept the associated risks, and agree to follow aftercare advice.</p></div><div class="legal-back-btn"><button class="btn btn-dark" onclick="history.back()">Go Back</button></div></div></div>
+
+<div class="page" id="page-cookies"><div class="legal-hero"><div class="gold-bar"></div><span class="eyebrow">Legal</span><h2>Cookie Policy</h2><p class="legal-meta">Last updated: April 2026</p></div><div class="legal-body"><div class="legal-intro"><p>This page explains how Dr MAK Aesthetics uses cookies on our website.</p></div><div class="legal-section"><div class="legal-section-num">01</div><div class="legal-section-body"><h3>What Are Cookies?</h3><p>Cookies are small text files placed on your device when you visit a website. They help websites work more efficiently.</p></div></div><div class="legal-section"><div class="legal-section-num">02</div><div class="legal-section-body"><h3>Cookies We Use</h3><p>We use <strong>essential cookies only</strong>:</p><ul class="legal-list"><li>Booking form functionality</li><li>Security and session handling</li></ul><p>We do <strong>not</strong> use tracking, advertising or third-party analytics cookies.</p></div></div><div class="legal-section"><div class="legal-section-num">03</div><div class="legal-section-body"><h3>Managing Cookies</h3><p>You can manage or disable cookies via your browser settings. Disabling essential cookies may affect website functionality.</p></div></div><div class="legal-section"><div class="legal-section-num">04</div><div class="legal-section-body"><h3>Contact Us</h3><p>Questions about cookies? <a href="mailto:info@drmakaesthetics.co.uk">info@drmakaesthetics.co.uk</a></p></div></div><div class="legal-back-btn"><button class="btn btn-dark" onclick="history.back()">Go Back</button></div></div></div>
+
+    </div><!-- /page-content -->
   </div><!-- /main -->
 </div><!-- /app -->
 
@@ -4370,9 +4583,7 @@ details.tx-item-card[open] .tx-summary-caret::before {
         <li><button onclick="goTo('concerns',null)">Skin Concerns</button></li>
         <li><button onclick="goTo('treatments',null)">Treatments</button></li>
         <li><button onclick="goTo('plans',null)">Pricing</button></li>
-        <li><button onclick="goTo('plans',null)">Packages</button></li>
         <li><button onclick="goTo('quiz',null)">Find My Treatment</button></li>
-        <li><button onclick="goTo('plans',null)">Membership</button></li>
         <li><button onclick="goTo('results',null)">Before &amp; After</button></li>
         <li><button onclick="goTo('reviews',null)">Reviews</button></li>
         <li><button onclick="goTo('plans',null)">Offers</button></li>
@@ -4425,9 +4636,9 @@ details.tx-item-card[open] .tx-summary-caret::before {
   <div class="footer-bottom">
     <p>&copy; 2025 DR MAK Aesthetics. All rights reserved. Doctor-Led &bull; GMC Registered &bull; Glasgow &bull; Edinburgh</p>
     <div class="footer-legal">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms &amp; Conditions</a>
-      <a href="#">Cookie Policy</a>
+      <a href="#" onclick="goTo('privacy',null);return false">Privacy Policy</a>
+      <a href="#" onclick="goTo('terms',null);return false">Terms &amp; Conditions</a>
+      <a href="#" onclick="goTo('cookies',null);return false">Cookie Policy</a>
     </div>
   </div>
 </footer>
